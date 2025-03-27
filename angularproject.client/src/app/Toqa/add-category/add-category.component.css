@@ -1,0 +1,22 @@
+.custom-btn {
+  background-color: #FF6E4E !important; /* Soft Coral */
+  border-color: #FF6E4E !important;
+  color: white !important;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+  .custom-btn:hover {
+    background-color: #D45D63 !important; /* Warm Rose */
+    border-color: #D45D63 !important;
+    color: white !important;
+  }
+.custom-form {
+  border: 2px solid #FF6E4E;
+  border-radius: 15px;
+  padding: 25px 30px;
+  background: #fff5f2; /* very light floral background */
+}
+
+

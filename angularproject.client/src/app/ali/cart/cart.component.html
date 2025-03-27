@@ -1,0 +1,60 @@
+<div class="cart-page">
+  <!-- Banner Section -->
+  <div class="cart-banner">
+    <img src="https://images.contentstack.io/v3/assets/bltcedd8dbd5891265b/blt4a4af7e6facea579/6668df6ceca9a600983250ac/beautiful-flowers-hero.jpg?q=70&width=3840&auto=webp" alt="Flower Shop Banner">
+    <div class="banner-text">
+      <h1>Shopping Cart</h1>
+      <p>Home > Shopping Cart</p>
+    </div>
+  </div>
+
+  <!-- Cart Table -->
+  <div *ngIf="cart && cart.products && cart.products.length > 0; else emptyCart" class="cart-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Message</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of cart.products; let i = index">
+          <td><img [src]="product.img" alt="Product Image" width="80" height="80"></td>
+          <td>{{ product.name || 'Unknown Product' }}</td>
+          <td>{{ product.price || 0 }} $</td>
+          <td>
+            <div class="quantity-control">
+              <button (click)="decreaseQuantity(product)">-</button>
+              <input type="number" [(ngModel)]="product.quantity" (change)="calculateTotalPrice()" min="1">
+              <button (click)="increaseQuantity(product)">+</button>
+            </div>
+          </td>
+          <td>{{ (product.price || 0) * product.quantity }} $</td>
+          <td><textarea [(ngModel)]="product.message" placeholder="Add a message..."></textarea></td>
+          <td>
+            <button (click)="removeProduct(product.productId)" class="remove-btn">🗑️</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Cart Footer -->
+    <div class="cart-footer">
+      <div class="total-price">Total Price: {{ totalPrice }} $</div>
+      <div>
+        <button (click)="saveCart()" class="save-btn">Save Cart</button>
+        <button (click)="checkout()" class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty Cart Message -->
+  <ng-template #emptyCart>
+    <div class="empty-message">Your cart is empty!</div>
+  </ng-template>
+</div>

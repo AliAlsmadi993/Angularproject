@@ -13,6 +13,7 @@
     <Folder Include="src\app\adnan\" />
     <Folder Include="src\app\nada\" />
     <Folder Include="src\app\amal\" />
+    <Folder Include="src\app\Amal\" />
     <Folder Include="src\app\toqa\" />
   </ItemGroup>
 </Project>

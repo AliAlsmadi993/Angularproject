@@ -22,6 +22,7 @@
     <Folder Include="src\app\amal\" />
     <Folder Include="src\app\Amal\" />
     <Folder Include="src\app\mona\" />
+    <Folder Include="src\app\habib\" />
     <Folder Include="src\app\toqa\" />
     <Folder Include="src\app\Admin Services\" />
     <Folder Include="src\app\Toqa\" />

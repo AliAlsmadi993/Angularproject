@@ -35,6 +35,7 @@ import { AddCategoryComponent } from './Toqa/add-category/add-category.component
 import { EditCategoryComponent } from './Toqa/edit-category/edit-category.component';
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
+import { HabibComponent } from './habib/habib/habib.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-cate
     AddCategoryComponent,
     EditCategoryComponent,
     AddProductComponent,
-    ShowAllCategoryComponent
+    ShowAllCategoryComponent,
+    HabibComponent
   ],
   imports: [
     BrowserModule,

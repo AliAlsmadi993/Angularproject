@@ -1,0 +1,46 @@
+<!-- إضافة الفيديو كخلفية -->
+<div class="video-background">
+  <video autoplay muted loop id="bgVideo">
+    <source src="../../../assets/vedio/flowersFall.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
+<!-- تصميم الفورم كما هو -->
+<div class="container mt-5 mb-5 position-relative">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-7">
+      <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-body p-5" style="background-color: #f9f9f9;">
+          <h4 class="card-title text-center mb-4" style="color: #d32f2f;">Register</h4>
+          <form #register="ngForm" (ngSubmit)="postData(register.value)">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" placeholder="Name" name="Name" ngModel required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <input type="email" class="form-control" placeholder="Email" name="Email" ngModel required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <input type="password" class="form-control" placeholder="Password" name="Password" ngModel required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <input type="password" class="form-control" placeholder="Confirm Password" name="ConfirmPassword" ngModel required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <input type="text" class="form-control" placeholder="Image URL" name="Img" ngModel>
+              </div>
+              <div class="col-md-6 mb-3">
+                <input type="number" class="form-control" placeholder="Phone Number" name="PhoneNum" ngModel required>
+              </div>
+              <div class="col-md-12 mb-3 d-flex justify-content-center">
+                <input type="text" class="form-control" placeholder="Gender" name="Gender" ngModel>
+              </div>
+            </div>
+            <button type="submit" class="btn w-100 text-white" style="background-color: #d32f2f; padding: 13px;">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

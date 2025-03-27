@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2191419">
+﻿<Project Sdk="Microsoft.VisualStudio.JavaScript.Sdk/1.0.2191419">
   <PropertyGroup>
     <StartupCommand>npm start</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
@@ -8,9 +8,9 @@
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\angularproject.client\browser\</BuildOutputFolder>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="src\app\adnan\service\" />
     <Folder Include="src\app\ali\" />
     <Folder Include="src\app\mona\" />
-    <Folder Include="src\app\adnan\" />
     <Folder Include="src\app\nada\" />
     <Folder Include="src\app\amal\" />
     <Folder Include="src\app\toqa\" />

@@ -1,0 +1,34 @@
+<div class="container mt-5">
+  <h3 class="text-center mb-4 flower-heading"> All Categories</h3>
+
+  <a routerLink="/AddCategory" class="btn btn-sm flower-btn">
+    Add Category
+  </a>
+  <br />
+  <br />
+  <table class="table table-hover table-bordered flower-table shadow-sm">
+    <thead class="table-header">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of CategoryContainer">
+        <th scope="row">{{category.id}}</th>
+        <td>{{category.Name}}</td>
+        <td>{{category.Description}}</td>
+        <td>
+          <a style=" margin-right: 10px;" routerLink="/EditCategory/{{category.id}}" class="btn btn-sm flower-btn">
+             Edit
+          </a>
+          <button class="btn btn-sm flower-btn" (click)="DeleteCategory(category.id)">
+             Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,38 @@
+.flower-heading {
+  font-family: 'Segoe UI', sans-serif;
+  color: #FF6E4E;
+  font-weight: bold;
+}
+
+.flower-table {
+  background-color: #fff5f2; /* soft floral background */
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+  .flower-table th,
+  .flower-table td {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 16px;
+  }
+
+.table-header {
+  background-color: #FF6E4E; /* soft coral */
+  color: white;
+}
+
+.flower-btn {
+  background-color: #FF6E4E;
+  border: none;
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+}
+
+  .flower-btn:hover {
+    background-color: #D45D63;
+    color: white;
+  }

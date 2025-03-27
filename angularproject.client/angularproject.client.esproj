@@ -9,10 +9,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\app\ali\" />
-    <Folder Include="src\app\mona\" />
     <Folder Include="src\app\adnan\" />
     <Folder Include="src\app\nada\" />
     <Folder Include="src\app\amal\" />
+    <Folder Include="src\app\mona\" />
     <Folder Include="src\app\toqa\" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,64 @@
+<p>history works!</p>
+
+
+<div class="container mt-5">
+  <h2 class="text-center text-primary mb-4">Your Order History</h2>
+
+ 
+  <div *ngIf="stuff && stuff.length > 0; else noHistory" class="row">
+    <div class="col-md-12">
+      <div class="card mb-4 shadow-lg rounded">
+        <div class="card-body">
+          <h4 class="card-title text-dark font-weight-bold mb-3">Order Details</h4>
+
+          <div class="d-flex justify-content-between mb-3">
+            <p><strong>Recipient Name:</strong> {{ stuff.recipientName }}</p>
+            <p><strong>Phone:</strong> {{ stuff.phoneNumber }}</p>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <p><strong>Location:</strong> {{ stuff.location }}</p>
+            <p><strong>Payment Method:</strong> {{ stuff.paymentMethod }}</p>
+          </div>
+
+       
+          <p><strong>Order Date:</strong> {{ stuff.date | date: 'short' }}</p>
+
+        
+          <div class="mt-4">
+            <h5 class="text-dark">Products:</h5>
+            <div *ngFor="let product of stuff.products" class="card mb-3">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img [src]="product.img" class="img-fluid rounded-start" alt="Product Image" style="height: 150px; object-fit: cover;">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">Message: {{ product.message }}</p>
+                    <p class="card-text"><strong>Quantity:</strong> {{ product.quantity }}</p>
+                    <p class="card-text text-success"><strong>Price:</strong> {{ product.price | currency }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+       
+          <div class="d-flex justify-content-between mt-3">
+            <h5 class="text-dark">Total Price:</h5>
+            <h5 class="text-success">{{ stuff.totalPrice | currency }}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <ng-template #noHistory>
+    <div class="alert alert-warning text-center">
+      You haven't made any orders yet.
+    </div>
+  </ng-template>
+</div>
+

@@ -11,16 +11,16 @@ import { LoginComponent } from './adnan/login/login.component';
 import { RegisterComponent } from './adnan/register/register.component';
 import { ContactComponent } from './adnan/contact/contact.component';
 import { HomeComponent } from './adnan/home/home.component';
-import { FormsModule } from '@angular/forms';
+
 import { AboutComponent } from './adnan/about/about.component';
-import { DashboardComponent } from './adnan/dashboard/dashboard.component';
+
 import { FeedbackComponent } from './mona/feedback/feedback.component';
 import { UsersComponent } from './mona/users/users.component';
 import { VouchersComponent } from './mona/vouchers/vouchers.component';
-import { FormsModule } from '@angular/forms';
+
 import { DashboardComponent } from './mona/dashboard/dashboard.component';
 import { AddCategoryComponent } from './Toqa/add-category/add-category.component';
-import { FormsModule } from '@angular/forms';
+
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
 import { EditCategoryComponent } from './Toqa/edit-category/edit-category.component';
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
@@ -46,22 +46,20 @@ import { HistoryComponent } from './Amal/history/history.component';
     FeedbackComponent,
     UsersComponent,
     VouchersComponent,
-    DashboardComponent
-    AppComponent,
+    DashboardComponent,
+ 
     AddCategoryComponent,
     ShowAllCategoryComponent,
     EditCategoryComponent,
-    AddProductComponent
-    AppComponent,
+    AddProductComponent,
+ 
     ProfileandeditComponent,
     HistoryComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
     AppRoutingModule, FormsModule
-    AppRoutingModule, FormsModule
-    AppRoutingModule,FormsModule
-    AppRoutingModule, FormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -36,6 +36,10 @@ import { EditCategoryComponent } from './Toqa/edit-category/edit-category.compon
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
 import { HabibComponent } from './habib/habib/habib.component';
+import { OrderComponent } from './ali/order/order.component';
+import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
+import { NewPasswordComponent } from './habib/new-password/new-password.component';
+import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +64,11 @@ import { HabibComponent } from './habib/habib/habib.component';
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
-    HabibComponent
+    HabibComponent,
+    OrderComponent,
+    VerifyCodeComponent,
+    NewPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

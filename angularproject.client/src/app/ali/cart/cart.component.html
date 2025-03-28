@@ -1,5 +1,5 @@
+
 <div class="cart-page">
-  <!-- Banner Section -->
   <div class="cart-banner">
     <img src="https://images.contentstack.io/v3/assets/bltcedd8dbd5891265b/blt4a4af7e6facea579/6668df6ceca9a600983250ac/beautiful-flowers-hero.jpg?q=70&width=3840&auto=webp" alt="Flower Shop Banner">
     <div class="banner-text">
@@ -8,7 +8,6 @@
     </div>
   </div>
 
-  <!-- Cart Table -->
   <div *ngIf="cart && cart.products && cart.products.length > 0; else emptyCart" class="cart-container">
     <table>
       <thead>
@@ -36,14 +35,11 @@
           </td>
           <td>{{ (product.price || 0) * product.quantity }} $</td>
           <td><textarea [(ngModel)]="product.message" placeholder="Add a message..."></textarea></td>
-          <td>
-            <button (click)="removeProduct(product.productId)" class="remove-btn">🗑️</button>
-          </td>
+          <td><button (click)="removeProduct(product.productId)" class="remove-btn">🗑️</button></td>
         </tr>
       </tbody>
     </table>
 
-    <!-- Cart Footer -->
     <div class="cart-footer">
       <div class="total-price">Total Price: {{ totalPrice }} $</div>
       <div>
@@ -53,7 +49,6 @@
     </div>
   </div>
 
-  <!-- Empty Cart Message -->
   <ng-template #emptyCart>
     <div class="empty-message">Your cart is empty!</div>
   </ng-template>

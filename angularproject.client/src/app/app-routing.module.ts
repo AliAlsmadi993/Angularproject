@@ -28,6 +28,10 @@ import { AddCategoryComponent } from './Toqa/add-category/add-category.component
 import { EditCategoryComponent } from './Toqa/edit-category/edit-category.component';
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
+import { OrderComponent } from './ali/order/order.component';
+import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
+import { NewPasswordComponent } from './habib/new-password/new-password.component';
+import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 
 const routes: Routes = [
   // 'adnan' routes
@@ -42,6 +46,7 @@ const routes: Routes = [
   { path: 'carts', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'Voucher', component: VoucherComponent },
+  { path: 'order', component: OrderComponent },
 
   // 'mona' routes
   { path: 'users', component: UsersComponent },
@@ -57,7 +62,12 @@ const routes: Routes = [
   { path: 'AllCategories', component: ShowAllCategoryComponent },
   { path: 'EditCategory/:id', component: EditCategoryComponent },
   { path: 'AddProduct', component: AddProductComponent },
-  { path: 'AddCategory', component: AddCategoryComponent }
+  { path: 'AddCategory', component: AddCategoryComponent },
+  //habib routs
+  { path: 'reset_pass', component: ResetPasswordComponent },
+  { path: 'newpassword/:id', component: NewPasswordComponent },
+  { path: 'verify_pass', component: VerifyCodeComponent },
+
 ];
 
 @NgModule({

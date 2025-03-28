@@ -21,8 +21,14 @@ export class VoucherService {
 
   private voucherApiUrl = 'https://67e2bc4a97fc65f535375ff8.mockapi.io/Voucher';
   private userApiUrl = 'https://67d5f9cd286fdac89bc0e100.mockapi.io/Registration';
+  private loggedApiUrl = 'https://67e3fe882ae442db76d27d2c.mockapi.io/logged';
+
 
   constructor(private http: HttpClient) { }
+
+  checkLoggedStatus(): Observable<any> {
+    return this.http.get<any>(this.loggedApiUrl);
+  }
 
   getAllVouchers(): Observable<any[]> {
     return this.http.get<any[]>(this.voucherApiUrl);

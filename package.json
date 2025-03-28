@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@angular/platform-browser": "^19.2.3",
-    "chart.js": "^4.4.8"
+    "@emailjs/browser": "^4.4.1",
+    "chart.js": "^4.4.8",
+    "emailjs-com": "^3.2.0"
   }
 }

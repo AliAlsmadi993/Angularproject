@@ -1,0 +1,119 @@
+/* voucher.component.css */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #e0f7fa;
+}
+
+.wheel-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin-bottom: 20px;
+}
+
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  transform: rotate(0deg);
+  transition: transform 5s ease-out;
+  border: 10px solid #d35400;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background: conic-gradient( #FFEB3B 0deg 36deg, #FF9800 36deg 72deg, #F44336 72deg 108deg, #E91E63 108deg 144deg, #9C27B0 144deg 180deg, #3F51B5 180deg 216deg, #2196F3 216deg 252deg, #03A9F4 252deg 288deg, #00BCD4 288deg 324deg, #4CAF50 324deg 360deg );
+}
+
+.pointer {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid #b71c1c;
+  z-index: 10;
+}
+
+.slice {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 0;
+  left: 50%;
+  transform-origin: 0% 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.discount-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(18deg); /* لتعديل اتجاه النص */
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.spin-button {
+  padding: 10px 20px;
+  background-color: #E72463;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+  .spin-button:disabled {
+    background-color: #E72463;
+    cursor: not-allowed;
+  }
+
+  .spin-button:hover:enabled {
+    background-color: #E72463;
+  }
+
+.result-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #E72463;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+  .close-button:hover {
+    background-color: #27ae60;
+  }

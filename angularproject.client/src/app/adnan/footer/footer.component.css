@@ -1,0 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+/* تعديل الكود الخاص بالـ Footer */
+.footer-area {
+  flex-shrink: 0;
+  margin-top: auto; /* لضمان أن الـ Footer يكون في أسفل الصفحة دائماً */
+  background-color: #f0f0f0;
+}

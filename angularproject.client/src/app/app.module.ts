@@ -71,13 +71,13 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
-    HabibComponent
+    HabibComponent,
     EditCategoryComponent,
     AddProductComponent,
     SidebarComponent,
     DashboardcontentComponent,
     ShowallproductsComponent,
-    OrdersComponent
+    OrdersComponent,
     HabibComponent,
     OrderComponent,
     VerifyCodeComponent,
@@ -88,7 +88,7 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
     BrowserModule, HttpClientModule,
     AppRoutingModule, FormsModule
   

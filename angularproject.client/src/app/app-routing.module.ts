@@ -78,7 +78,7 @@ const routes: Routes = [
 
 
     ]
-  }
+  },
 
   // 'amal' routes
   { path: 'profile', component: ProfileandeditComponent },

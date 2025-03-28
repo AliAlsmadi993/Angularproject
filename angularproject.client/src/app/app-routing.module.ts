@@ -28,6 +28,9 @@ import { AddCategoryComponent } from './Toqa/add-category/add-category.component
 import { EditCategoryComponent } from './Toqa/edit-category/edit-category.component';
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
+import { DashboardcontentComponent } from './mona/dashboardcontent/dashboardcontent.component';
+import { ShowallproductsComponent } from './Toqa/showallproducts/showallproducts.component';
+import { OrdersComponent } from './Toqa/orders/orders.component';
 import { OrderComponent } from './ali/order/order.component';
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
@@ -53,6 +56,29 @@ const routes: Routes = [
   { path: 'vouchers', component: VouchersComponent },
   { path: 'feedback', component: FeedbackComponent },
   { path: 'dashboard', component: DashboardComponent },
+
+
+  { path: "", component: DashboardComponent   },
+ 
+
+  {
+    path: "dashboard", component: DashboardComponent, children: [
+      { path: "AddCategory", component: AddCategoryComponent },
+      { path: "AllCategories", component: ShowAllCategoryComponent },
+      { path: "EditCategory/:id", component: EditCategoryComponent },
+      { path: "AddProduct", component: AddProductComponent },
+      { path: "users", component: UsersComponent },
+      { path: "vouchers", component: VouchersComponent },
+      { path: "feedback", component: FeedbackComponent },
+      { path: "dashboardcontent", component: DashboardcontentComponent },
+      { path: "allproducts", component: ShowallproductsComponent },
+      { path: "Orders", component: OrdersComponent },
+
+
+
+
+    ]
+  }
 
   // 'amal' routes
   { path: 'profile', component: ProfileandeditComponent },

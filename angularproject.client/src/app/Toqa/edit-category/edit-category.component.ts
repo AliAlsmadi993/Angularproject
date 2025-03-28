@@ -3,6 +3,7 @@ import { AdminService } from '../../Admin Services/admin.service';
 import Swal from 'sweetalert2';
 import { Snapshot } from 'jest-editor-support';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -13,6 +14,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditCategoryComponent {
 
   constructor(private _admin: AdminService, private _active: ActivatedRoute, private _router: Router) { }
+
+  @Input() category: any;
+  @Output() close = new EventEmitter<void>();
+
+  
 
   CategoryID: any;
   CategoryContainer: any;
@@ -44,6 +50,10 @@ export class EditCategoryComponent {
         });
       }
     });
+    this.closeModal();
+  }
+  closeModal() {
+    this.close.emit();
   }
 
 }

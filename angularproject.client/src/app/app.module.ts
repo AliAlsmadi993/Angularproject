@@ -24,6 +24,7 @@ import { VoucherComponent } from './ali/voucher/voucher.component';
 import { FeedbackComponent } from './mona/feedback/feedback.component';
 import { UsersComponent } from './mona/users/users.component';
 import { VouchersComponent } from './mona/vouchers/vouchers.component';
+
 import { DashboardComponent } from './mona/dashboard/dashboard.component';
 
 // Components from 'amal'
@@ -36,6 +37,10 @@ import { EditCategoryComponent } from './Toqa/edit-category/edit-category.compon
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
 import { HabibComponent } from './habib/habib/habib.component';
+import { SidebarComponent } from './mona/sidebar/sidebar.component';
+import { DashboardcontentComponent } from './mona/dashboardcontent/dashboardcontent.component';
+import { ShowallproductsComponent } from './Toqa/showallproducts/showallproducts.component';
+import { OrdersComponent } from './Toqa/orders/orders.component';
 import { OrderComponent } from './ali/order/order.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
@@ -60,10 +65,19 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     CartComponent,
     CheckoutComponent,
     VoucherComponent,
+    DashboardComponent,
+   
     AddCategoryComponent,
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
+    HabibComponent
+    EditCategoryComponent,
+    AddProductComponent,
+    SidebarComponent,
+    DashboardcontentComponent,
+    ShowallproductsComponent,
+    OrdersComponent
     HabibComponent,
     OrderComponent,
     VerifyCodeComponent,
@@ -75,6 +89,9 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     HttpClientModule,
     AppRoutingModule,
     FormsModule
+    BrowserModule, HttpClientModule,
+    AppRoutingModule, FormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]

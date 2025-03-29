@@ -37,6 +37,9 @@ import { OrderComponent } from './ali/order/order.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
+import { CartComponent } from './ali/cart/cart.component';
+import { CheckoutComponent } from './ali/checkout/checkout.component';
+import { VoucherComponent } from './ali/voucher/voucher.component';
 
 @NgModule({
   declarations: [

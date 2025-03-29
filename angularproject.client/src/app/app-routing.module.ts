@@ -36,8 +36,9 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 
+
+
 const routes: Routes = [
-  // 'adnan' routes
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
@@ -58,10 +59,10 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
 
 
-  { path: "", component: DashboardComponent   },
- 
+  { path: "", component: DashboardComponent },
 
-const routes: Routes = [
+
+
   { path: "users", component: UsersComponent },
   { path: "vouchers", component: VouchersComponent },
   { path: "feedback", component: FeedbackComponent },
@@ -100,7 +101,7 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "", pathMatch: "full", component: HomeComponent },
   { path: "home", component: HomeComponent },
-  { path: "dashboard", component: DashboardComponent }
+  { path: "dashboard", component: DashboardComponent },
   // 'Toqa' routes (Ensure casing consistency)
   { path: 'AllCategories', component: ShowAllCategoryComponent },
   { path: 'EditCategory/:id', component: EditCategoryComponent },

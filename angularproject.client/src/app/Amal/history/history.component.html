@@ -1,64 +1,62 @@
-<p>history works!</p>
-
-
 <div class="container mt-5">
-  <h2 class="text-center text-primary mb-4">Your Order History</h2>
+  <h2 class="text-center mb-5" style="font-family: 'Playfair Display', serif; color: #E72463; font-size: 3rem;">Your Blooming Order History 🌹</h2>
 
- 
   <div *ngIf="stuff && stuff.length > 0; else noHistory" class="row">
-    <div class="col-md-12">
-      <div class="card mb-4 shadow-lg rounded">
+    <div class="col-md-12" *ngFor="let order of stuff">
+      <div class="card mb-4 shadow-lg rounded border-0" style="background: rgba(255, 245, 245, 0.95); border-left: 5px solid #E72463;">
         <div class="card-body">
-          <h4 class="card-title text-dark font-weight-bold mb-3">Order Details</h4>
-
-          <div class="d-flex justify-content-between mb-3">
-            <p><strong>Recipient Name:</strong> {{ stuff.recipientName }}</p>
-            <p><strong>Phone:</strong> {{ stuff.phoneNumber }}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="card-title text-dark font-weight-bold mb-3">Order Details</h4>
+            <span class="badge" [ngClass]="{
+              'bg-success': order.status === 'Delivered',
+              'bg-warning': order.status === 'On the Way',
+              'bg-info': order.status === 'Placed'
+            }" style="font-size: 1rem;">Status: {{ order.status }}</span>
           </div>
 
           <div class="d-flex justify-content-between mb-3">
-            <p><strong>Location:</strong> {{ stuff.location }}</p>
-            <p><strong>Payment Method:</strong> {{ stuff.paymentMethod }}</p>
+            <p><strong>Recipient:</strong> {{ order.recipientName }}</p>
+            <p><strong>Phone:</strong> {{ order.phoneNumber }}</p>
           </div>
 
-       
-          <p><strong>Order Date:</strong> {{ stuff.date | date: 'short' }}</p>
+          <div class="d-flex justify-content-between mb-3">
+            <p><strong>Location:</strong> {{ order.location }}</p>
+            <p><strong>Payment:</strong> {{ order.paymentMethod }}</p>
+          </div>
 
-        
+          <p><strong>Order Date:</strong> {{ order.date | date: 'medium' }}</p>
+
           <div class="mt-4">
-            <h5 class="text-dark">Products:</h5>
-            <div *ngFor="let product of stuff.products" class="card mb-3">
+            <h5 class="text-dark mb-3">Products:</h5>
+            <div *ngFor="let product of order.products" class="card mb-3" style="background: rgba(255, 245, 245, 0.85); border-left: 3px solid #E72463;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img [src]="product.img" class="img-fluid rounded-start" alt="Product Image" style="height: 150px; object-fit: cover;">
+                  <img [src]="product.img" class="img-fluid rounded-start" alt="Product Image" style="height: 150px; object-fit: cover; border-radius: 12px;">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">Message: {{ product.message }}</p>
-                    <p class="card-text"><strong>Quantity:</strong> {{ product.quantity }}</p>
-                    <p class="card-text text-success"><strong>Price:</strong> {{ product.price | currency }}</p>
+                    <p>Message: {{ product.message }}</p>
+                    <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+                    <p class="text-success"><strong>Price:</strong> {{ product.price | currency }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-       
           <div class="d-flex justify-content-between mt-3">
-            <h5 class="text-dark">Total Price:</h5>
-            <h5 class="text-success">{{ stuff.totalPrice | currency }}</h5>
+            <h5>Total Price:</h5>
+            <h5 class="text-success">{{ order.totalPrice | currency }}</h5>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  
   <ng-template #noHistory>
-    <div class="alert alert-warning text-center">
-      You haven't made any orders yet.
+    <div class="alert alert-warning text-center" style="background-color: #FFE5EC; color: #E72463;">
+      🌸 You haven't made any orders yet. Start blooming your garden! 🌺
     </div>
   </ng-template>
 </div>
-

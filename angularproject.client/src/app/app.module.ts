@@ -14,17 +14,9 @@ import { RegisterComponent } from './adnan/register/register.component';
 import { ContactComponent } from './adnan/contact/contact.component';
 import { HomeComponent } from './adnan/home/home.component';
 import { AboutComponent } from './adnan/about/about.component';
-
-// Components from 'ali'
-import { CartComponent } from './ali/cart/cart.component';
-import { CheckoutComponent } from './ali/checkout/checkout.component';
-import { VoucherComponent } from './ali/voucher/voucher.component';
-
-// Components from 'mona'
 import { FeedbackComponent } from './mona/feedback/feedback.component';
 import { UsersComponent } from './mona/users/users.component';
 import { VouchersComponent } from './mona/vouchers/vouchers.component';
-
 import { DashboardComponent } from './mona/dashboard/dashboard.component';
 
 // Components from 'amal'
@@ -45,6 +37,11 @@ import { OrderComponent } from './ali/order/order.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
+import { ProductDetailsComponent } from './nada/product-details/product-details.component';
+import { ProductsComponent } from './nada/products/products.component';
+import { CartComponent } from './ali/cart/cart.component';
+import { CheckoutComponent } from './ali/checkout/checkout.component';
+import { VoucherComponent } from './ali/voucher/voucher.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +64,8 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     VoucherComponent,
     DashboardComponent,
    
+    DashboardComponent,
+    
     AddCategoryComponent,
     EditCategoryComponent,
     AddProductComponent,
@@ -82,7 +81,10 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     OrderComponent,
     VerifyCodeComponent,
     NewPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    HabibComponent,
+    ProductDetailsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,7 @@ import { ResetPasswordComponent } from './habib/reset-password/reset-password.co
     BrowserModule, HttpClientModule,
     AppRoutingModule, FormsModule
   
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

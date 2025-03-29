@@ -2671,110 +2671,72 @@ mark {
 /*    05 - Layout - Footer
 /*----------------------------------------*/
 .footer-area .footer-widget-area {
-  padding: 100px 0;
+  padding: 30px 0;
   background-color: #1b1b1b;
+  color: #ffffff;
 }
 
-@media (max-width: 991px) {
-  .footer-area .footer-widget-area {
-    padding: 60px 0px 50px 0;
+.footer-area .single-footer-widget {
+  margin-bottom: 20px;
+}
+
+  .footer-area .single-footer-widget .widget-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #E72463;
   }
-}
 
-@media (max-width: 767px) {
-  .footer-area .footer-widget-area {
-    padding: 60px 0px 37px 0;
+  .footer-area .single-footer-widget .widget-list {
+    list-style: none;
+    padding: 0;
   }
-}
 
-@media (max-width: 991px) {
-  .footer-area .single-footer-widget {
-    margin-top: 38px;
+    .footer-area .single-footer-widget .widget-list li {
+      margin: 8px 0;
+    }
+
+      .footer-area .single-footer-widget .widget-list li a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+        .footer-area .single-footer-widget .widget-list li a:hover {
+          color: #E72463;
+        }
+
+  .footer-area .single-footer-widget .social-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
   }
-}
 
-.footer-area .single-footer-widget .footer-logo {
-  margin-bottom: 18px;
-}
+  .footer-area .single-footer-widget .social-icon {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.3s;
+  }
 
-.footer-area .single-footer-widget .desc-content {
-  margin-bottom: 23px;
-  color: #ffffff;
-}
+    .footer-area .single-footer-widget .social-icon:hover {
+      background-color: #E72463;
+      color: #ffffff;
+    }
 
-.footer-area .single-footer-widget .social-links ul li a {
-  width: 35px;
-  height: 35px;
-  line-height: 35px;
-  text-align: center;
-  margin-right: 12px;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-}
-
-.footer-area .single-footer-widget .social-links ul li a:hover {
-  color: #ffffff;
-  background-color: #E72463;
-  border-color: #E72463;
-}
-
-.footer-area .single-footer-widget .widget-title {
-  color: #ffffff;
-  font-weight: 500;
-  font-size: 22px;
-  margin-top: -1px;
-  margin-bottom: 22px;
-  line-height: 1;
-}
-
-.footer-area .single-footer-widget .widget-list {
-  color: #ffffff;
-  list-style: none;
-  margin-bottom: 0px;
-}
-
-.footer-area .single-footer-widget .widget-list li {
-  line-height: 1;
-  padding: 8px 0;
-}
-
-.footer-area .single-footer-widget .widget-list li:last-child {
-  padding-bottom: 0;
-}
-
-.footer-area .single-footer-widget .widget-list li a {
-  font-weight: 300;
-}
-
-.footer-area .single-footer-widget .widget-list li a:hover {
-  margin-left: 5px;
-  color: #E72463;
-}
-
-.footer-area .single-footer-widget .widget-body address {
-  line-height: 2;
-  color: #ffffff;
-  font-weight: 300;
+.footer-area address {
+  line-height: 1.6;
 }
 
 .footer-area .footer-copyright-area {
   background-color: #000000;
-  padding: 20px 0px;
-}
-
-.footer-area .footer-copyright-area .copyright-content {
-  color: #ffffff;
-}
-
-.footer-area .footer-copyright-area .copyright-content p {
-  margin-bottom: 0px;
-}
-
-.footer-area .footer-copyright-area .copyright-content a {
-  color: #E72463;
-}
-
-.footer-area .footer-copyright-area .copyright-content a:hover {
+  padding: 15px 0;
+  text-align: center;
   color: #ffffff;
 }
 

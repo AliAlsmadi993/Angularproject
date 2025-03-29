@@ -35,6 +35,11 @@ import { OrderComponent } from './ali/order/order.component';
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
+import { ProductsComponent } from './nada/products/products.component';
+import { ProductDetailsComponent } from './nada/product-details/product-details.component';
+
+  
+ 
 
 const routes: Routes = [
   // 'adnan' routes
@@ -58,9 +63,18 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
 
 
-  { path: "", component: DashboardComponent   },
- 
+  { path: "", component: DashboardComponent },
 
+
+  { path: "users", component: UsersComponent },
+  { path: "vouchers", component: VouchersComponent },
+  { path: "feedback", component: FeedbackComponent },
+  { path: "dashboard", component: DashboardComponent },
+    
+  { path: "AddCategory", component: AddCategoryComponent },
+  { path: "AllCategories", component: ShowAllCategoryComponent },
+  { path: "EditCategory/:id", component: EditCategoryComponent },
+  { path: "AddProduct", component: AddProductComponent },
   {
     path: "dashboard", component: DashboardComponent, children: [
       { path: "AddCategory", component: AddCategoryComponent },
@@ -84,6 +98,13 @@ const routes: Routes = [
   { path: 'profile', component: ProfileandeditComponent },
   { path: 'history', component: HistoryComponent },
 
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "about", component: AboutComponent },
+  { path: "contact", component: ContactComponent },
+  { path: "", pathMatch: "full", component: HomeComponent },
+  { path: "home", component: HomeComponent },
+  { path: "dashboard", component: DashboardComponent },
   // 'Toqa' routes (Ensure casing consistency)
   { path: 'AllCategories', component: ShowAllCategoryComponent },
   { path: 'EditCategory/:id', component: EditCategoryComponent },
@@ -94,6 +115,11 @@ const routes: Routes = [
   { path: 'newpassword/:id', component: NewPasswordComponent },
   { path: 'verify_pass', component: VerifyCodeComponent },
 
+  { path: 'AddCategory', component: AddCategoryComponent },
+
+  //'Nada' routes (Ensure casing consistency)
+  { path: 'Products', component: ProductsComponent },
+  { path: 'ProductDetails/:id', component: ProductDetailsComponent }
 ];
 
 @NgModule({

@@ -12,40 +12,49 @@ export class AdminChatComponent implements OnInit {
   messages: any[] = [];
   newMessage: string = '';
   selectedFile!: File;
-  showPopup: boolean = false;
-  currentTargetUserId!: number;
-  userAvatar: string = 'https://m.media-amazon.com/images/I/81OXEQrFPTL._AC_UF1000,1000_QL80_.jpg';
+  users: any[] = [];
 
-  productForm = {
-    productId: '100',
-    name: '',
-    price: 0,
-    quantity: 1,
-    img: '',
-    message: ''
-  };
+  userAvatar = 'https://cdn-icons-png.flaticon.com/512/2202/2202112.png'; // صورة الأدمن الافتراضية
+  currentUserId = '63'; // ← ID المستخدم الحالي الذي تتحدث معه
 
   constructor(private chatService: ChatService, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadMessages();
+    this.loadUsers();
   }
 
   loadMessages(): void {
     this.chatService.getMessages().subscribe(data => {
-      this.messages = data;
+      this.messages = data.filter(m => m.userId == this.currentUserId);
     });
+  }
+
+  loadUsers(): void {
+    this.http.get<any[]>('https://your-registration-api-url/users').subscribe(data => {
+      this.users = data;
+    });
+  }
+
+  getUserName(userId: string): string {
+    const user = this.users.find(u => u.id == userId);
+    return user ? user.Name || user.Email : 'User';
+  }
+
+  getUserImage(userId: string): string {
+    const user = this.users.find(u => u.id == userId);
+    return user?.Img || this.userAvatar;
   }
 
   sendMessage(): void {
     if (!this.newMessage && !this.selectedFile) return;
 
-    const messageData: any = {
+    const messageData = {
       sender: 'admin',
       message: this.newMessage,
       image: '',
       timestamp: new Date().toISOString(),
-      userId: this.currentTargetUserId
+      userId: this.currentUserId
     };
 
     if (this.selectedFile) {
@@ -64,23 +73,5 @@ export class AdminChatComponent implements OnInit {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
-  }
-
-  openAddToCartPopup(userId: number): void {
-    this.currentTargetUserId = userId;
-    this.showPopup = true;
-  }
-
-  closePopup(): void {
-    this.showPopup = false;
-  }
-
-  addToUserCart(): void {
-    const product = { ...this.productForm };
-
-    this.chatService.addProductToUserCart(this.currentTargetUserId, product).subscribe(() => {
-      alert('✅ Product added to user cart!');
-      this.closePopup();
-    });
   }
 }

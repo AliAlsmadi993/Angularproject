@@ -1,4 +1,6 @@
-
+<br />
+<br />
+<br />
 
 <div class="checkout-container">
   <h2>Checkout</h2>
@@ -38,9 +40,15 @@
           <input type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" value="Credit Card" required>
           Credit Card
         </label>
+
+        <!-- ✅ خيار الدفع عند التوصيل -->
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" value="Cash on Delivery" required>
+          Cash on Delivery
+        </label>
       </div>
 
-      <!-- فورم الدفع الوهمية -->
+      <!-- فورم الدفع - بطاقة -->
       <div *ngIf="paymentMethod === 'Credit Card'" class="payment-form">
         <div class="form-group">
           <label>Card Number:</label>
@@ -56,10 +64,18 @@
         </div>
       </div>
 
+      <!-- فورم الدفع - Orange Money -->
       <div *ngIf="paymentMethod === 'Orange Money'" class="payment-form">
         <div class="form-group">
           <label>Orange Money Phone Number:</label>
           <input type="text" placeholder="Enter your Orange Money number" class="form-input">
+        </div>
+      </div>
+
+      <!-- فورم الدفع - عند التوصيل -->
+      <div *ngIf="paymentMethod === 'Cash on Delivery'" class="payment-form">
+        <div class="form-group">
+          <label>Cash on Delivery selected. You will pay when your order is delivered.</label>
         </div>
       </div>
     </div>
@@ -87,3 +103,7 @@
     <button (click)="completeOrder()" class="checkout-button">💸 Place Order</button>
   </div>
 </div>
+
+<br />
+<br />
+<br />

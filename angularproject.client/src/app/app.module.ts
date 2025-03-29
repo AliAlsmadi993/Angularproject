@@ -39,6 +39,9 @@ import { NewPasswordComponent } from './habib/new-password/new-password.componen
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 import { ProductsComponent } from './nada/products/products.component';
+import { CartComponent } from './ali/cart/cart.component';
+import { CheckoutComponent } from './ali/checkout/checkout.component';
+import { VoucherComponent } from './ali/voucher/voucher.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +81,7 @@ import { ProductsComponent } from './nada/products/products.component';
     OrderComponent,
     VerifyCodeComponent,
     NewPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
     HabibComponent,
     ProductDetailsComponent,
     ProductsComponent

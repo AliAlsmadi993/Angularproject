@@ -38,6 +38,9 @@ import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 import { ProductsComponent } from './nada/products/products.component';
 import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 
+  
+ 
+
 const routes: Routes = [
   // 'adnan' routes
   { path: 'login', component: LoginComponent },
@@ -60,10 +63,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
 
 
-  { path: "", component: DashboardComponent   },
- 
+  { path: "", component: DashboardComponent },
 
-const routes: Routes = [
+
   { path: "users", component: UsersComponent },
   { path: "vouchers", component: VouchersComponent },
   { path: "feedback", component: FeedbackComponent },
@@ -102,7 +104,7 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "", pathMatch: "full", component: HomeComponent },
   { path: "home", component: HomeComponent },
-  { path: "dashboard", component: DashboardComponent }
+  { path: "dashboard", component: DashboardComponent },
   // 'Toqa' routes (Ensure casing consistency)
   { path: 'AllCategories', component: ShowAllCategoryComponent },
   { path: 'EditCategory/:id', component: EditCategoryComponent },

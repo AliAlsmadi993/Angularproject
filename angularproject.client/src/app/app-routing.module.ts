@@ -37,6 +37,8 @@ import { NewPasswordComponent } from './habib/new-password/new-password.componen
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
 import { ProductsComponent } from './nada/products/products.component';
 import { ProductDetailsComponent } from './nada/product-details/product-details.component';
+import { ChatComponent } from './ali/chat/chat.component';
+import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
 
   
  
@@ -54,6 +56,10 @@ const routes: Routes = [
   { path: 'checkout', component: CheckoutComponent },
   { path: 'Voucher', component: VoucherComponent },
   { path: 'order', component: OrderComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: 'adminChat', component:AdminChatComponent  },
+
+
 
   // 'mona' routes
   { path: 'users', component: UsersComponent },

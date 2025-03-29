@@ -1,0 +1,42 @@
+<div class="chat-container">
+  <div class="chat-header">
+    <img [src]="userAvatar" alt="Admin Avatar" class="user-avatar">
+    <h2>Admin Chat Room</h2>
+  </div>
+
+  <div class="messages-container">
+    <div *ngFor="let message of messages" [ngClass]="{'user-message': message.sender === 'user', 'admin-message': message.sender === 'admin'}">
+      <div class="message-bubble">
+        <img [src]="message.sender === 'user' ? userAvatar : userAvatar" class="avatar-image">
+        <div class="message-content">
+          <p>{{ message.message }}</p>
+          <img *ngIf="message.image" [src]="message.image" alt="Message Image" class="message-image">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="message-input-area">
+    <textarea [(ngModel)]="newMessage" placeholder="Type your message here..."></textarea>
+    <input type="file" (change)="onFileSelected($event)">
+    <button (click)="sendMessage()">Send</button>
+  </div>
+
+  <!-- Add to Cart Popup -->
+  <div class="popup-backdrop" *ngIf="showPopup">
+    <div class="popup">
+      <h3>Add Product to User's Cart</h3>
+      <input [(ngModel)]="productForm.productId" placeholder="Product ID">
+      <input [(ngModel)]="productForm.name" placeholder="Product Name">
+      <input [(ngModel)]="productForm.price" type="number" placeholder="Price">
+      <input [(ngModel)]="productForm.quantity" type="number" placeholder="Quantity" value="1">
+      <input [(ngModel)]="productForm.img" placeholder="Product Image URL">
+      <textarea [(ngModel)]="productForm.message" placeholder="Optional Message"></textarea>
+
+      <div class="popup-actions">
+        <button (click)="addToUserCart()">Add to Cart</button>
+        <button (click)="closePopup()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

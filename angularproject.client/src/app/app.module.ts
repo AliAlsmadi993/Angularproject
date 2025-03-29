@@ -92,7 +92,7 @@ import { VoucherComponent } from './ali/voucher/voucher.component';
     AppRoutingModule,
     FormsModule,
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule
+    AppRoutingModule,
    
   
     

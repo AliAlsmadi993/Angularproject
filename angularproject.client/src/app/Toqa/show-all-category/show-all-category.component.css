@@ -1,4 +1,3 @@
-
 .flower-heading,
 .main-title {
   color: #E72463;
@@ -42,7 +41,7 @@
     color: white;
   }
 
-/* Custom Red Outline Button */
+/ Custom Red Outline Button */
 .btn-red-outline {
   border: 2px solid #dc3545;
   color: #dc3545;

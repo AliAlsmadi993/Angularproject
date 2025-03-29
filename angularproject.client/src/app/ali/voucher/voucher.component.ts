@@ -32,17 +32,32 @@ export class VoucherComponent implements OnInit {
   selectedVoucher!: Voucher;
   currentRotation = 0;
   isSpinning = false;
-  userId: string;
+  userId: string = '';
   sliceAngle: number;
   showResult = false;
 
   constructor(private voucherService: VoucherService) {
     this.sliceAngle = 360 / this.vouchers.length;
-    this.userId = sessionStorage.getItem('userId') || '73';
   }
 
   ngOnInit(): void {
-    console.log('VoucherComponent has been initialized');
+    this.getUserIdFromLoggedApi();
+  }
+
+  getUserIdFromLoggedApi(): void {
+    this.voucherService.checkLoggedStatus().subscribe(
+      (response) => {
+        if (Array.isArray(response) && response.length > 0 && response[0].userId) {
+          this.userId = response[0].userId.toString();  // ✅ استخدام الـ userId من الـ API
+          console.log('✅ User ID Retrieved from Logged API (Array):', this.userId);
+        } else {
+          console.error('❌ Failed to retrieve user ID from logged API. Response:', response);
+        }
+      },
+      (error) => {
+        console.error('❌ Error fetching user ID from logged API:', error);
+      }
+    );
   }
 
   spinWheel(): void {
@@ -72,21 +87,21 @@ export class VoucherComponent implements OnInit {
   }
 
   private saveVoucherToUser(voucher: Voucher): void {
-    if (!voucher.Userid.includes(this.userId)) {  // إذا كان المستخدم لم يحصل على الفويتشر من قبل
+    if (!voucher.Userid.includes(this.userId)) {
       voucher.Userid.push(this.userId);
 
       console.log('🚀 Preparing to send voucher data to API:', voucher);
 
-      if (voucher.id) {  // إذا كان موجودًا، نقوم بالتحديث (PUT)
+      if (voucher.id) {
         this.voucherService.updateVoucher(voucher.id, voucher, this.userId).subscribe({
           next: (response) => console.log('✅ Voucher updated successfully:', response),
           error: (err) => console.error('❌ Error updating voucher on API:', err)
         });
-      } else {  // إذا لم يكن موجودًا، نقوم بإنشائه (POST)
+      } else {
         this.voucherService.createVoucher(voucher).subscribe({
           next: (response) => {
             console.log('✅ Voucher created successfully:', response);
-            voucher.id = response.id;  // تحديث الـ ID بعد إنشائه
+            voucher.id = response.id;
           },
           error: (err) => console.error('❌ Error creating voucher on API:', err)
         });

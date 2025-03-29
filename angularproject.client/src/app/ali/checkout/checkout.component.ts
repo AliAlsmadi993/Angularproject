@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CartserviceService } from '../service/cartservice.service';
 import { OrderService } from '../service/order.service';
 import { VoucherService } from '../service/voucher.service';
+import Swal from 'sweetalert2';
 
 interface CartProduct {
   productId: string;
@@ -36,6 +37,7 @@ export class CheckoutComponent implements OnInit {
 
   userId: number = 0;
   cart!: Cart;
+  username: string = '';
   totalPrice: number = 0;
   location: string = '';
   phoneNumber: string = '';
@@ -60,7 +62,8 @@ export class CheckoutComponent implements OnInit {
     this.cartService.checkLoggedStatus().subscribe(
       (response) => {
         if (Array.isArray(response) && response.length > 0 && response[0].userId) {
-          this.userId = Number(response[0].userId);  // استخراج الـ userId من داخل المصفوفة
+          this.userId = Number(response[0].userId);
+          this.username = response[0].Name || 'Unknown User';// استخراج الـ userId من داخل المصفوفة
           console.log('✅ User ID Retrieved from Logged API (Array):', this.userId);
         }
         else {
@@ -128,13 +131,15 @@ export class CheckoutComponent implements OnInit {
 
     const orderData = {
       userId: this.userId,
+      username: this.username,
       products: this.cart.products,
       location: this.location,
       phoneNumber: this.phoneNumber,
       recipientName: this.recipientName,
       paymentMethod: this.paymentMethod,
       date: new Date().toISOString(),
-      totalPrice: this.discountedPrice
+      totalPrice: this.discountedPrice,
+      status: 'Placed'
     };
 
     this.orderService.getUserOrders(this.userId.toString()).subscribe(
@@ -144,7 +149,15 @@ export class CheckoutComponent implements OnInit {
           this.orderService.addOrder(this.userId.toString(), response.orderData).subscribe(
             () => {
               console.log('Order added successfully!');
-              alert('Order placed successfully!');
+              Swal.fire({
+                title: 'Order Placed Successfully! 🎉',
+                text: 'Your order has been added successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#E72463',
+                background: '#fff',
+                backdrop: `rgba(0,0,0,0.4)`
+              });
               this.removeUsedVoucher();
               this.clearCart();
             },
@@ -157,7 +170,15 @@ export class CheckoutComponent implements OnInit {
           this.orderService.createUserOrder(this.userId.toString(), [orderData]).subscribe(
             () => {
               console.log('New order created successfully!');
-              alert('Order placed successfully!');
+              Swal.fire({
+                title: 'New Order Created! 🎉',
+                text: 'Your order has been created successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#E72463',
+                background: '#fff',
+                backdrop: `rgba(0,0,0,0.4)`
+              });
               this.removeUsedVoucher();
               this.clearCart();
             },

@@ -42,7 +42,6 @@ import { ProductDetailsComponent } from './nada/product-details/product-details.
  
 
 const routes: Routes = [
-  // 'adnan' routes
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'about', component: AboutComponent },
@@ -62,6 +61,8 @@ const routes: Routes = [
   { path: 'feedback', component: FeedbackComponent },
   { path: 'dashboard', component: DashboardComponent },
 
+
+  { path: "", component: DashboardComponent },
 
   { path: "", component: DashboardComponent },
 

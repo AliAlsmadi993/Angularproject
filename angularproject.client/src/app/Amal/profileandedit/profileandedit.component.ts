@@ -1,35 +1,86 @@
+
+
 import { Component, OnInit } from '@angular/core';
 import { SaService } from '../sa.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ImageUploadServiceService } from '../image-upload-service.service';
 
 @Component({
   selector: 'app-profileandedit',
   templateUrl: './profileandedit.component.html',
-  styleUrl: './profileandedit.component.css'
+  styleUrls: ['./profileandedit.component.css']
 })
-
 export class ProfileandeditComponent implements OnInit {
   user: any;
   editableUser: any = {};
   userId: string = '';
-  selectedFile: File | null = null;
-  uploadedImageUrl: string = '';  // لحفظ رابط الصورة المرفوعة
-  loading: boolean = false;  // لمعرفة حالة الرفع
+  isLoading: boolean = true;
 
-  constructor(private _ser: SaService, private route: ActivatedRoute, private imageUploadService: ImageUploadServiceService) { }
+  // متغيرات خاصة بالرفع 
+  selectedFile: File | null = null;
+  uploadedImageUrl: string = '';
+  loading: boolean = false;
+
+  constructor(private _ser: SaService, private router: Router, private imageUploadService: ImageUploadServiceService) { }
 
   ngOnInit() {
-    this.userId = this.route.snapshot.paramMap.get('id')!;
-    if (this.userId) {
-      this._ser.getdata(this.userId).subscribe((data) => {
-        this.user = data;
-        this.editableUser = { ...this.user };
-      });
-    }
+    this.getUserIdFromLoggedApi();
   }
 
-  // دالة لتحميل الصورة
+  getUserIdFromLoggedApi(): void {
+    this._ser.checkLoggedStatus().subscribe(
+      (response) => {
+        if (Array.isArray(response) && response.length > 0) {
+          const loggedUser = response.find((user: any) => user.userId);
+
+          if (loggedUser && loggedUser.userId) {
+            this.userId = loggedUser.userId;
+            console.log('✅ Found User ID from Logged API:', this.userId);
+            this.getUserProfile();
+          } else {
+            console.error('❌ No userId found. Redirecting to login.');
+            this.router.navigate(['/login']);
+          }
+        } else {
+          console.error('❌ No users found in the Logged API. Redirecting to login.');
+          this.router.navigate(['/login']);
+        }
+      },
+      (error) => {
+        console.error('❌ Error fetching user from Logged API:', error);
+        this.router.navigate(['/login']);
+      }
+    );
+  }
+
+  getUserProfile(): void {
+    this._ser.getUserProfile(this.userId).subscribe(
+      (data) => {
+        this.user = data;
+        this.editableUser = { ...this.user };
+        console.log('✅ User profile loaded successfully:', this.user);
+        this.isLoading = false;
+      },
+      (error) => {
+        console.error('❌ Error fetching user profile:', error);
+        this.isLoading = false;
+      }
+    );
+  }
+
+  updateProfile(): void {
+    this._ser.postdata(this.userId, this.editableUser).subscribe(
+      () => {
+        this.user = { ...this.editableUser };
+        alert("Profile updated successfully!");
+      },
+      (error) => {
+        console.error('❌ Error updating profile:', error);
+      }
+    );
+  }
+
+  // لرفع الصورة
   onImageSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
@@ -37,38 +88,30 @@ export class ProfileandeditComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.editableUser.Img = reader.result as string; // لتحميل الصورة وتحويلها إلى base64
+        this.editableUser.Img = reader.result as string;
       };
     } else {
       this.selectedFile = null;
     }
   }
 
-
-  // دالة لرفع الصورة إلى API
+  // دالة رفع الصورة إلى API
   uploadImage(file: File): void {
     if (file) {
-      this.loading = true; // تفعيل حالة الرفع
+      this.loading = true;
       this.imageUploadService.uploadImage(file).subscribe(
         (response: { data: { url: string; }; }) => {
-          this.uploadedImageUrl = response.data.url; // تخزين رابط الصورة المرفوعة
-          this.editableUser.Img = this.uploadedImageUrl; // تحديث الصورة في البيانات
-          this.loading = false; // إلغاء حالة الرفع
+          this.uploadedImageUrl = response.data.url;
+          this.editableUser.Img = this.uploadedImageUrl;
+          this.loading = false;
           console.log('Uploaded Image URL:', this.uploadedImageUrl);
         },
         (error: any) => {
           console.error('Image Upload Error:', error);
-          this.loading = false; // إلغاء حالة الرفع في حال حدوث خطأ
+          this.loading = false;
         }
       );
     }
   }
-
-  // دالة لتحديث الـ profile
-  updateProfile() {
-    this._ser.postdata(this.userId, this.editableUser).subscribe(() => {
-      this.user = { ...this.editableUser }; // تحديث البيانات في الواجهة
-      alert("Profile updated successfully!"); // عرض رسالة نجاح التحديث
-    });
-  }
 }
+

@@ -1,23 +1,16 @@
-
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+body {
+  margin-top: 80px;
+  background: linear-gradient(135deg, #FFDDE1, #FF99AC);
+  font-family: 'Playfair Display', serif;
 }
 
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-.container {
-  max-width: 1200px;
+.card-title {
+  color: #E72463;
+  font-family: 'Playfair Display', serif;
 }
 
-.btn-outline-primary {
-  border: 2px solid #007bff;
-  color: #007bff;
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5em 0.8em;
+  border-radius: 12px;
 }
-
-  .btn-outline-primary:hover {
-    background-color: #007bff;
-    color: white;
-  }

@@ -35,8 +35,11 @@ import { OrderComponent } from './ali/order/order.component';
 import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 import { NewPasswordComponent } from './habib/new-password/new-password.component';
 import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
+import { ProductsComponent } from './nada/products/products.component';
+import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 
-
+  
+ 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -61,6 +64,7 @@ const routes: Routes = [
 
   { path: "", component: DashboardComponent },
 
+  { path: "", component: DashboardComponent },
 
 
   { path: "users", component: UsersComponent },
@@ -112,6 +116,11 @@ const routes: Routes = [
   { path: 'newpassword/:id', component: NewPasswordComponent },
   { path: 'verify_pass', component: VerifyCodeComponent },
 
+  { path: 'AddCategory', component: AddCategoryComponent },
+
+  //'Nada' routes (Ensure casing consistency)
+  { path: 'Products', component: ProductsComponent },
+  { path: 'ProductDetails/:id', component: ProductDetailsComponent }
 ];
 
 @NgModule({

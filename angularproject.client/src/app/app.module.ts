@@ -67,7 +67,7 @@ import { OrdersComponent } from './Toqa/orders/orders.component';
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
-    HabibComponent
+    HabibComponent,
     EditCategoryComponent,
     AddProductComponent,
     SidebarComponent,
@@ -77,11 +77,11 @@ import { OrdersComponent } from './Toqa/orders/orders.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+   
     AppRoutingModule,
-    FormsModule
-    BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule
+   
+     HttpClientModule
+   , FormsModule
   
   ],
   providers: [],

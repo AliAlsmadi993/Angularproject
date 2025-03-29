@@ -28,6 +28,8 @@ import { AddCategoryComponent } from './Toqa/add-category/add-category.component
 import { EditCategoryComponent } from './Toqa/edit-category/edit-category.component';
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
+import { ProductsComponent } from './nada/products/products.component';
+import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 
 const routes: Routes = [
   // 'adnan' routes
@@ -57,7 +59,11 @@ const routes: Routes = [
   { path: 'AllCategories', component: ShowAllCategoryComponent },
   { path: 'EditCategory/:id', component: EditCategoryComponent },
   { path: 'AddProduct', component: AddProductComponent },
-  { path: 'AddCategory', component: AddCategoryComponent }
+  { path: 'AddCategory', component: AddCategoryComponent },
+
+  //'Nada' routes (Ensure casing consistency)
+  { path: 'Products', component: ProductsComponent },
+  { path: 'ProductDetails/:id', component: ProductDetailsComponent }
 ];
 
 @NgModule({

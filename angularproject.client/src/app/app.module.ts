@@ -36,6 +36,8 @@ import { EditCategoryComponent } from './Toqa/edit-category/edit-category.compon
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
 import { HabibComponent } from './habib/habib/habib.component';
+import { ProductDetailsComponent } from './nada/product-details/product-details.component';
+import { ProductsComponent } from './nada/products/products.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { HabibComponent } from './habib/habib/habib.component';
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
-    HabibComponent
+    HabibComponent,
+    ProductDetailsComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

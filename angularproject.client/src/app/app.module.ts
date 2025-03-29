@@ -94,8 +94,6 @@ import { VoucherComponent } from './ali/voucher/voucher.component';
     BrowserModule, HttpClientModule,
     AppRoutingModule, FormsModule
    
-     HttpClientModule
-   , FormsModule
   
     
   ],

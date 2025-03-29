@@ -14,13 +14,6 @@ import { RegisterComponent } from './adnan/register/register.component';
 import { ContactComponent } from './adnan/contact/contact.component';
 import { HomeComponent } from './adnan/home/home.component';
 import { AboutComponent } from './adnan/about/about.component';
-
-// Components from 'ali'
-import { CartComponent } from './ali/cart/cart.component';
-import { CheckoutComponent } from './ali/checkout/checkout.component';
-import { VoucherComponent } from './ali/voucher/voucher.component';
-
-// Components from 'mona'
 import { FeedbackComponent } from './mona/feedback/feedback.component';
 import { UsersComponent } from './mona/users/users.component';
 import { VouchersComponent } from './mona/vouchers/vouchers.component';
@@ -36,6 +29,14 @@ import { EditCategoryComponent } from './Toqa/edit-category/edit-category.compon
 import { AddProductComponent } from './Toqa/add-product/add-product.component';
 import { ShowAllCategoryComponent } from './Toqa/show-all-category/show-all-category.component';
 import { HabibComponent } from './habib/habib/habib.component';
+import { SidebarComponent } from './mona/sidebar/sidebar.component';
+import { DashboardcontentComponent } from './mona/dashboardcontent/dashboardcontent.component';
+import { ShowallproductsComponent } from './Toqa/showallproducts/showallproducts.component';
+import { OrdersComponent } from './Toqa/orders/orders.component';
+import { OrderComponent } from './ali/order/order.component';
+import { VerifyCodeComponent } from './habib/verify-code/verify-code.component';
+import { NewPasswordComponent } from './habib/new-password/new-password.component';
+import { ResetPasswordComponent } from './habib/reset-password/reset-password.component';
 import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 import { ProductsComponent } from './nada/products/products.component';
 
@@ -58,10 +59,26 @@ import { ProductsComponent } from './nada/products/products.component';
     CartComponent,
     CheckoutComponent,
     VoucherComponent,
+    DashboardComponent,
+   
+    DashboardComponent,
+    
     AddCategoryComponent,
     EditCategoryComponent,
     AddProductComponent,
     ShowAllCategoryComponent,
+    HabibComponent,
+    EditCategoryComponent,
+    AddProductComponent,
+    SidebarComponent,
+    DashboardcontentComponent,
+    ShowallproductsComponent,
+    OrdersComponent,
+    HabibComponent,
+    OrderComponent,
+    VerifyCodeComponent,
+    NewPasswordComponent,
+    ResetPasswordComponent
     HabibComponent,
     ProductDetailsComponent,
     ProductsComponent
@@ -70,7 +87,11 @@ import { ProductsComponent } from './nada/products/products.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserModule, HttpClientModule,
+    AppRoutingModule, FormsModule
+  
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

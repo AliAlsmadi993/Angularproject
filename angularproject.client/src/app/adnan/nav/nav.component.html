@@ -8,49 +8,61 @@
             <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
               <div class="header-logo d-flex align-items-center">
                 <a href="index.html">
-                  <img class="img-full" src="assets/images/logo/logo.png" alt="Header Logo">
+                  <img class="img-full" src="assets/images/logo/BloomoraLogo-removebg-preview.png" alt="Header Logo" >
                 </a>
               </div>
             </div>
             <div class="col-lg-8 d-none d-lg-flex justify-content-center col-custom">
               <nav class="main-nav d-none d-lg-flex">
                 <ul class="nav">
+                  <!-- العناصر الثابتة التي لا تتغير -->
                   <li>
-                    <a routerLink="/home">
-                      <span class="menu-text">Home</span>
-                    </a>
+                    <a routerLink="/home"><span class="menu-text">Home</span></a>
                   </li>
                   <li>
-                    <a routerLink="/about">
-                      <span class="menu-text">Shop</span>
-                    </a>
+                    <a routerLink="/about"><span class="menu-text">Shop</span></a>
                   </li>
                   <li>
-                    <a routerLink="/about">
-                      <span class="menu-text"> About Us</span>
-                    </a>
+                    <a routerLink="/about"><span class="menu-text">About Us</span></a>
                   </li>
                   <li>
-                    <a routerLink="/contact">
-                      <span class="menu-text">Contact Us</span>
-                    </a>
+                    <a routerLink="/contact"><span class="menu-text">Contact Us</span></a>
                   </li>
+
+
+                  <!-- إذا كان المستخدم غير مسجل دخول -->
+                  <ng-container *ngIf="!container">
+                    <li>
+                      <a routerLink="/login"><span class="menu-text">Sign In</span></a>
+                    </li>
+                    <li>
+                      <a routerLink="/register"><span class="menu-text">Sign Up</span></a>
+                    </li>
+                  </ng-container>
+
+                  <!-- إذا كان المستخدم مسجل دخول -->
+                  <ng-container *ngIf="container">
+                    <li>
+                      <a (click)="logout()"><span class="menu-text">Logout</span></a>
+                    </li>
+                    <li>
+                      <a routerLink="/profile"><span class="menu-text">Profile</span></a>
+                    </li>
+                    <li>
+                      <a routerLink="/history"><span class="menu-text">History</span></a>
+                    </li>
+                  </ng-container>
                   <li>
-                    <a routerLink="/login">
-                      <span class="menu-text">sign in</span>
-                    </a>
+                    <a routerLink="/cart"><span class="menu-text">Cart</span></a>
                   </li>
-                  <li>
-                    <a routerLink="/register">
-                      <span class="menu-text">sign up</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>
-                      <span class="menu-text">logout</span>
-                    </a>
-                  </li>
-                  <!--<li>
+
+
+                </ul>
+                <ul>
+                  <div id="google_translate_element" class="p-2"></div>
+
+                </ul>
+                <!--<li>
     <a href="shop.html">
       <span class="menu-text">Shop</span>
       <i class="fa fa-angle-down"></i>
@@ -88,7 +100,7 @@
       </div>
     </div>
   </li>-->
-                  <!--<li>
+                <!--<li>
     <a href="blog-details-fullwidth.html">
       <span class="menu-text"> Blog</span>
       <i class="fa fa-angle-down"></i>
@@ -117,8 +129,6 @@
       <li><a href="register.html">Register</a></li>
     </ul>
   </li>-->
-
-                </ul>
               </nav>
             </div>
             <!--<div class="col-lg-2 col-md-6 col-6 col-custom">

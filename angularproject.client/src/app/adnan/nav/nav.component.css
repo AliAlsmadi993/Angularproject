@@ -1,0 +1,26 @@
+.main-nav {
+  display: flex; /* استخدام Flexbox */
+  justify-content: space-between; /* توزيع المسافة بين العناصر */
+  align-items: center; /* محاذاة العناصر في المنتصف عمودياً */
+  width: 100%; /* جعل الناف بار يأخذ عرض الصفحة كاملاً */
+}
+
+  .main-nav > ul {
+    display: flex; /* تحديد القائمة لاستخدام Flexbox */
+    list-style: none; /* إزالة نقاط التعداد النقطي */
+    padding: 0; /* إزالة الpadding الافتراضي */
+  }
+
+    .main-nav > ul > li {
+      margin-right: 20px; /* تحديد مسافة بين العناصر */
+    }
+
+#google_translate_element {
+  margin-right: -130px; /* دفع عنصر الترجمة لليسار */
+}
+/* In your component's CSS file or in global styles */
+.swal2-confirm {
+  background-color: #E72463 !important; /* Use !important to override default styles */
+  color: white; /* Optional: change text color */
+  border: none; /* Optional: removes border */
+}

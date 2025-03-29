@@ -93,3 +93,18 @@
   top: 15px;
   right: 15px;
 }
+.btn-secondary {
+  background-color: dimgrey
+}
+
+
+.custom-btn {
+  background-color: #E72463;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+  .custom-btn:hover {
+    background-color: #D45D63;
+  }

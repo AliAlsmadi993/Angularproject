@@ -51,6 +51,7 @@ export class ShowallproductsComponent {
 
   openAddModal(): void {
     const modal = document.getElementById('addProductModal');
+
     if (modal) {
       modal.classList.add('show');
       modal.style.display = 'block';

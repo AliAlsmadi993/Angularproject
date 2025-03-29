@@ -47,7 +47,7 @@
   color: #dc3545;
   background-color: transparent;
   margin-right: 0.5vw;
-  margin: 0.5vw 0.5vw 0.5vw 0.5vw;
+    margin: 0.5vw 0.5vw 0.5vw 0.5vw;
   padding: 8px;
 }
 
@@ -97,6 +97,7 @@
   .custom-btn:hover {
     background-color: #D45D63;
   }
+
 .btn-secondary {
-  background-color: #D45D63!important;
+  background-color: dimgrey
 }

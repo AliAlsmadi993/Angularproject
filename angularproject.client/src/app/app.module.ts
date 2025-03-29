@@ -92,11 +92,12 @@ import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+   
     AppRoutingModule,
     FormsModule,
     BrowserModule, HttpClientModule,
-    AppRoutingModule, FormsModule
+    AppRoutingModule,
+   
   
     
   ],

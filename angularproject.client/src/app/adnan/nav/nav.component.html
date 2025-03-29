@@ -42,9 +42,7 @@
 
                   <!-- إذا كان المستخدم مسجل دخول -->
                   <ng-container *ngIf="container">
-                    <li>
-                      <a (click)="logout()"><span class="menu-text">Logout</span></a>
-                    </li>
+
                     <li>
                       <a routerLink="/profile"><span class="menu-text">Profile</span></a>
                     </li>
@@ -55,7 +53,9 @@
                   <li>
                     <a routerLink="/carts"><span class="menu-text">Cart</span></a>
                   </li>
-
+                  <li>
+                    <a (click)="logout()"><span class="menu-text">Logout</span></a>
+                  </li>
 
                 </ul>
                 <ul>

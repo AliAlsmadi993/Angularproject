@@ -47,3 +47,9 @@ body, html {
   .btn:hover {
     background-color: #a92323;
   }
+/* In your component's CSS file or in global styles */
+.swal2-confirm {
+  background-color: #E72463 !important; /* Use !important to override default styles */
+  color: white; /* Optional: change text color */
+  border: none; /* Optional: removes border */
+}

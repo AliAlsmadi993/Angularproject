@@ -1,11 +1,13 @@
-.flower-heading {
-  font-family: 'Segoe UI', sans-serif;
-  color: #FF6E4E;
+
+.flower-heading,
+.main-title {
+  color: #E72463;
   font-weight: bold;
 }
 
+
 .flower-table {
-  background-color: #fff5f2; /* soft floral background */
+  background-color: #fff5f2;
   border-radius: 12px;
   overflow: hidden;
 }
@@ -18,21 +20,79 @@
   }
 
 .table-header {
-  background-color: #FF6E4E; /* soft coral */
+  background-color: #E72463;
   color: white;
 }
 
-.flower-btn {
-  background-color: #FF6E4E;
+
+
+
+/* Custom Orange Button */
+.btn-orange {
+  background-color: #E72463;
+  color: white;
   border: none;
-  color: #fff;
-  padding: 5px 12px;
-  border-radius: 30px;
-  transition: background-color 0.3s ease;
-  font-weight: 500;
+  margin-right: 0.5vw;
+  /*  margin:0.5vw 0.5vw 0.5vw 0.5vw;*/
 }
 
-  .flower-btn:hover {
-    background-color: #D45D63;
+  .btn-orange:hover {
+    background-color: #BF2C5C;
     color: white;
+  }
+
+/* Custom Red Outline Button */
+.btn-red-outline {
+  border: 2px solid #dc3545;
+  color: #dc3545;
+  background-color: transparent;
+  margin-right: 0.5vw;
+  /*  margin: 0.5vw 0.5vw 0.5vw 0.5vw;*/
+}
+
+  .btn-red-outline:hover {
+    background-color: #BF2C5C;
+    color: white;
+  }
+
+
+.modal-dialog {
+  max-width: 500px;
+  margin: 100px auto;
+}
+
+.modal-content {
+  background-color: #fff5f2;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-title {
+  color: #E72463;
+  font-weight: bold;
+}
+
+.modal-backdrop.fade.show {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.btn-close {
+  filter: invert(1);
+}
+
+.custom-form {
+  background-color: #fff5f2;
+  border-radius: 15px;
+  padding: 25px;
+}
+
+.custom-btn {
+  background-color: #E72463;
+  color: white;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+  .custom-btn:hover {
+    background-color: #D45D63;
   }

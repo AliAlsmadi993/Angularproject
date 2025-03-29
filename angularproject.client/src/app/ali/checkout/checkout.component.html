@@ -1,0 +1,89 @@
+
+
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div class="checkout-form">
+    <!-- معلومات التوصيل -->
+    <div class="form-section">
+      <h3>📍 Delivery Information</h3>
+
+      <div class="form-group">
+        <label for="recipientName">Recipient Name:</label>
+        <input type="text" id="recipientName" [(ngModel)]="recipientName" placeholder="Enter recipient name" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" [(ngModel)]="location" placeholder="Enter delivery address" class="form-input" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Recipient Phone Number:</label>
+        <input type="text" id="phone" [(ngModel)]="phoneNumber" placeholder="Enter phone number" class="form-input" required>
+      </div>
+    </div>
+
+    <!-- طرق الدفع -->
+    <div class="form-section">
+      <h3>💳 Payment Method</h3>
+
+      <div class="payment-options">
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" value="Orange Money" required>
+          Orange Money
+        </label>
+
+        <label>
+          <input type="radio" name="paymentMethod" [(ngModel)]="paymentMethod" value="Credit Card" required>
+          Credit Card
+        </label>
+      </div>
+
+      <!-- فورم الدفع الوهمية -->
+      <div *ngIf="paymentMethod === 'Credit Card'" class="payment-form">
+        <div class="form-group">
+          <label>Card Number:</label>
+          <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>Expiry Date:</label>
+          <input type="text" placeholder="MM/YY" class="form-input">
+        </div>
+        <div class="form-group">
+          <label>CVV:</label>
+          <input type="text" placeholder="123" class="form-input">
+        </div>
+      </div>
+
+      <div *ngIf="paymentMethod === 'Orange Money'" class="payment-form">
+        <div class="form-group">
+          <label>Orange Money Phone Number:</label>
+          <input type="text" placeholder="Enter your Orange Money number" class="form-input">
+        </div>
+      </div>
+    </div>
+
+    <!-- الفيتشرز المتاحة -->
+    <div class="form-section">
+      <h3>🎁 Apply Voucher</h3>
+      <div class="form-group">
+        <label for="voucher">Choose Your Voucher:</label>
+        <select id="voucher" [(ngModel)]="selectedVoucherId" (change)="applyVoucher()" class="form-input">
+          <option value="">No Voucher Applied</option>
+          <option *ngFor="let voucher of vouchers" [value]="voucher.id">{{ voucher.Name }} - {{ voucher.Discount }}% OFF</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- ملخص الطلب -->
+    <div class="form-section order-summary">
+      <h3>📝 Order Summary</h3>
+      <p><strong>Total Price:</strong> {{ totalPrice }} $</p>
+      <p><strong>Price After Discount:</strong> {{ discountedPrice.toFixed(2) }} $</p>
+    </div>
+
+    <!-- زر الدفع -->
+    <button (click)="completeOrder()" class="checkout-button">💸 Place Order</button>
+  </div>
+</div>

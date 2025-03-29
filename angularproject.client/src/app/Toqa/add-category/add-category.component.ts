@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AdminService } from '../../Admin Services/admin.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -15,6 +16,9 @@ export class AddCategoryComponent {
 
   ngOnInit() { }
 
+  @Output() close = new EventEmitter<void>();
+  @Output() categoryAdded = new EventEmitter<boolean>();
+
   AddCategory(category: any) {
     this._admin.AddCategory(category).subscribe({
       next: () => {
@@ -24,17 +28,18 @@ export class AddCategoryComponent {
           showConfirmButton: false,
           timer: 1500
         }).then(() => {
-          this._router.navigate(['/AllCategories']);
-        });
-      },
-      error: (err) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'Failed to add category.',
+          this.categoryAdded.emit(true); // 👈 trigger parent to reload
+          this.closeModal();
         });
       }
     });
-
   }
+
+
+
+
+  closeModal() {
+    this.close.emit();
+  }
+
 }

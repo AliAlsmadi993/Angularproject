@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdnanService } from '../service/adnan.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -8,57 +9,48 @@ import { AdnanService } from '../service/adnan.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   constructor(private _ser: AdnanService, private router: Router) { }
 
   ngOnInit() { }
 
-  userData: any;
-
   getData(enteredUser: any) {
     this._ser.getAllUsers().subscribe({
       next: (data: any[]) => {
+        const user = data.find((p: any) => p.Email === enteredUser.Email && p.Password === enteredUser.password);
 
-        let user = data.find((p: any) => p.Email === enteredUser.Email && p.Password === enteredUser.password);
-
-        this.userData = user;
-
-        if (enteredUser.Email == "Admin@gmail.com" && enteredUser.password == 123) {
-          this._ser.userBehavior.next("Admin@gmail.com");
-          alert("Admin login successful");
-          this.router.navigate(['/dashboard']);
-        }
-
-        else if (user) {
+        if (user) {
           this._ser.userBehavior.next(user.Email);
 
-          // ✅ تجهيز البيانات المراد إرسالها إلى API LOGGED
           const userToLog = {
-            userId: user.id,   // جعل userId مساوي لـ id
+            userId: Number(user.id),
             Name: user.Name,
             Email: user.Email
           };
 
-          // إرسال المستخدم إلى API LOGGED
           this._ser.validateUser(userToLog).subscribe({
-            next: (response) => {
-              console.log("✅ User successfully added to LOGGED API:", response);
-              alert("Login successful and user added to LOGGED API!");
-              this.router.navigate(['/home']);
+            next: () => {
+              console.log("✅ User successfully added to LOGGED API.");
+              this._ser.mergeGuestCartWithUserCart(Number(user.id)).subscribe({
+                next: () => {
+                  console.log("✅ GuestCart successfully merged with UserCart!");
+                  Swal.fire('Success', 'Login successful!', 'success').then(() => {
+                    this.router.navigate(['/home']);
+                  });
+                },
+                error: () => console.error('Login successful, but cart merging failed.')
+              });
             },
-            error: (error) => {
-              console.error("❌ Error while adding user to LOGGED API:", error);
-              alert("Login successful, but failed to add user to LOGGED API.");
-            }
+            error: () => console.error('Failed to add user to LOGGED API.')
           });
 
+        } else if (enteredUser.Email === "Admin@gmail.com" && enteredUser.password === "123") {
+          this._ser.userBehavior.next("Admin@gmail.com");
+          this.router.navigate(['/dashboard']);
         } else {
-          alert("Invalid Email or Password");
+          Swal.fire('Error', 'Invalid Email or Password', 'error');
         }
       },
-      error: (error) => {
-        console.error("❌ Error during login:", error);
-      }
+      error: () => console.error('Something went wrong during login.')
     });
   }
 }

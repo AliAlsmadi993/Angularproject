@@ -1,0 +1,10 @@
+.main-title {
+  color: #E72463;
+  font-weight: bold;
+}
+
+.form-select {
+  font-size: 14px;
+  padding: 4px 8px;
+  width: 131px;
+}

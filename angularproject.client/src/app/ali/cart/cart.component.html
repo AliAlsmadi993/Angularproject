@@ -35,7 +35,7 @@
               <button (click)="increaseQuantity(product)">+</button>
             </div>
           </td>
-          <td>{{ (product.price || 0) * product.quantity }} $</td>
+          <td>{{ (product.price || 0) * product.quantity | number: '1.2-2' }} $</td>
           <td><textarea [(ngModel)]="product.message" placeholder="Add a message..."></textarea></td>
           <td><button (click)="removeProduct(product.productId)" class="remove-btn">🗑️</button></td>
         </tr>
@@ -43,7 +43,7 @@
     </table>
 
     <div class="cart-footer">
-      <div class="total-price">Total Price: {{ totalPrice }} $</div>
+      <div class="total-price">Total Price: {{ totalPrice | number: '1.2-2' }} $</div>
       <div>
         <button (click)="saveCart()" class="save-btn">Save Cart</button>
         <button (click)="checkout()" class="checkout-btn">Checkout</button>

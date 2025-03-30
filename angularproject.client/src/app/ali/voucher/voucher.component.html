@@ -1,29 +1,21 @@
-<!-- voucher.component.html -->
-<div class="wheel-container">
-  <div class="pointer"></div> <!-- السهم الذي يوضح المكان الذي توقف عنده الدولاب -->
-  <div class="wheel" #wheelContainer>
-    <div class="slice" style="transform: rotate(0deg);"><span class="discount-text">100%</span></div>
-    <div class="slice" style="transform: rotate(36deg);"><span class="discount-text">90%</span></div>
-    <div class="slice" style="transform: rotate(72deg);"><span class="discount-text">80%</span></div>
-    <div class="slice" style="transform: rotate(108deg);"><span class="discount-text">70%</span></div>
-    <div class="slice" style="transform: rotate(144deg);"><span class="discount-text">60%</span></div>
-    <div class="slice" style="transform: rotate(180deg);"><span class="discount-text">50%</span></div>
-    <div class="slice" style="transform: rotate(216deg);"><span class="discount-text">40%</span></div>
-    <div class="slice" style="transform: rotate(252deg);"><span class="discount-text">30%</span></div>
-    <div class="slice" style="transform: rotate(288deg);"><span class="discount-text">20%</span></div>
-    <div class="slice" style="transform: rotate(324deg);"><span class="discount-text">10%</span></div>
+
+<br />
+<br />
+<br />
+<div class="box-wrapper">
+  <div class="box" [class.opened]="boxOpened" (click)="openBox()">
+    <div class="lid"></div>
+    <div class="front"></div>
+  </div>
+
+  <div *ngIf="showResult" class="popup">
+    🎉 You got <strong>{{ selectedDiscount }}</strong> discount!
+    <button (click)="closePopup()">Close</button>
+
   </div>
 </div>
 
-<button (click)="spinWheel()" [disabled]="isSpinning" class="spin-button">
-  {{isSpinning ? 'Spinning...' : 'Spin Wheel'}}
-</button>
-
-<!-- Result Popup -->
-<div class="result-popup" *ngIf="showResult">
-  <div class="popup-content">
-    <h1>🎉 Congratulations! 🎉</h1>
-    <p>You won: <strong>{{selectedVoucher?.Discount}}% OFF</strong></p>
-    <button (click)="closeResultPopup()" class="close-button">🎁 Claim Your Reward</button>
-  </div>
-</div>
+<button class="open-btn" (click)="openBox()" [disabled]="isOpening">🎁 Open Surprise Box</button>
+<br />
+<br />
+<br />

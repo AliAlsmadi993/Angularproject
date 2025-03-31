@@ -39,6 +39,7 @@ import { ProductsComponent } from './nada/products/products.component';
 import { ProductDetailsComponent } from './nada/product-details/product-details.component';
 import { ChatComponent } from './ali/chat/chat.component';
 import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
+import { LoginPhotoComponent } from './ali/login-photo/login-photo.component';
 
   
  
@@ -57,7 +58,8 @@ const routes: Routes = [
   { path: 'Voucher', component: VoucherComponent },
   { path: 'order', component: OrderComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'adminChat', component:AdminChatComponent  },
+  { path: 'adminChat', component: AdminChatComponent },
+  { path: 'loginPhoto', component:LoginPhotoComponent },
 
 
 

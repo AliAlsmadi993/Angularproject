@@ -44,6 +44,7 @@ import { CheckoutComponent } from './ali/checkout/checkout.component';
 import { ChatComponent } from './ali/chat/chat.component';
 import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
 import { VoucherComponent } from './ali/voucher/voucher.component';
+import { LoginPhotoComponent } from './ali/login-photo/login-photo.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { VoucherComponent } from './ali/voucher/voucher.component';
     ProductDetailsComponent,
     ProductsComponent,
     ChatComponent,
-    AdminChatComponent
+    AdminChatComponent,
+    LoginPhotoComponent
   ],
   imports: [
     BrowserModule,

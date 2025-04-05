@@ -54,6 +54,7 @@ body {
 }
 
 .message-content {
+    display:flex;
   max-width: 65%;
   padding: 12px;
   border-radius: 12px;

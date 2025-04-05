@@ -47,6 +47,8 @@ export class CheckoutComponent implements OnInit {
   vouchers: Voucher[] = [];
   selectedVoucherId: string = '';
   discountedPrice: number = 0;
+  deliveryDate: string = '';
+  deliveryTime: string = '';
 
   constructor(
     private cartService: CartserviceService,
@@ -124,11 +126,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   completeOrder(): void {
-    if (!this.location || !this.phoneNumber || !this.recipientName) {
-      alert('Please fill in all the required fields: Location, Phone Number, and Recipient Name.');
+    if (!this.location || !this.phoneNumber || !this.recipientName || !this.deliveryDate || !this.deliveryTime) {
+      alert('Please fill in all the required fields including delivery date and time.');
       return;
     }
-
     const orderData = {
       userId: this.userId,
       username: this.username,
@@ -136,6 +137,8 @@ export class CheckoutComponent implements OnInit {
       location: this.location,
       phoneNumber: this.phoneNumber,
       recipientName: this.recipientName,
+      deliveryDate: this.deliveryDate,
+      deliveryTime: this.deliveryTime,
       paymentMethod: this.paymentMethod,
       date: new Date().toISOString(),
       totalPrice: this.discountedPrice,

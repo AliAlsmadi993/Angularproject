@@ -25,6 +25,16 @@
         <input type="text" id="phone" [(ngModel)]="phoneNumber" placeholder="Enter phone number" class="form-input" required>
       </div>
     </div>
+    <div class="form-group">
+      <label for="deliveryDate">📅 Delivery Date:</label>
+      <input type="date" id="deliveryDate" [(ngModel)]="deliveryDate" class="form-input" required>
+    </div>
+
+    <div class="form-group">
+      <label for="deliveryTime">⏰ Delivery Time:</label>
+      <input type="time" id="deliveryTime" [(ngModel)]="deliveryTime" class="form-input" required>
+    </div>
+
 
     <!-- طرق الدفع -->
     <div class="form-section">

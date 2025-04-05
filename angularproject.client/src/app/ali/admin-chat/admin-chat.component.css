@@ -59,17 +59,21 @@
   border-radius: 8px;
   border: 1px solid #ccc;
 }
-
 .input-area {
+    margin-left:15%;
+    width:70%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
   background: #fff;
   padding: 15px;
   border-top: 1px solid #ddd;
+  z-index: 1000;
 }
-
 textarea {
   flex: 1;
   padding: 12px;

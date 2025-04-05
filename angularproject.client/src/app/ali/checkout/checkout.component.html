@@ -95,7 +95,7 @@
     <!-- ملخص الطلب -->
     <div class="form-section order-summary">
       <h3>📝 Order Summary</h3>
-      <p><strong>Total Price:</strong> {{ totalPrice }} $</p>
+      <p><strong>Total Price:</strong> {{ totalPrice | number: '1.2-2' }} $</p>
       <p><strong>Price After Discount:</strong> {{ discountedPrice.toFixed(2) }} $</p>
     </div>
 

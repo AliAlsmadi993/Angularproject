@@ -1,14 +1,20 @@
 
-
-
-<div class="cart-page">
-  <div class="cart-banner">
-    <img src="https://images.contentstack.io/v3/assets/bltcedd8dbd5891265b/blt4a4af7e6facea579/6668df6ceca9a600983250ac/beautiful-flowers-hero.jpg?q=70&width=3840&auto=webp" alt="Flower Shop Banner">
-    <div class="banner-text">
-      <h1>Shopping Cart</h1>
-      <p>Home > Shopping Cart</p>
+<div class="breadcrumbs-area position-relative">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <div class="breadcrumb-content position-relative section-content">
+          <h3 class="title-3">Cart Sidebar</h3>
+          <ul>
+            <li><a routerLink="/">Home</a></li>
+            <li>Cart</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
 
   <div *ngIf="cart && cart.products && cart.products.length > 0; else emptyCart" class="cart-container">
     <table>
@@ -54,7 +60,6 @@
   <ng-template #emptyCart>
     <div class="empty-message">Your cart is empty!</div>
   </ng-template>
-</div>
 <br />
 <br />
 <br />

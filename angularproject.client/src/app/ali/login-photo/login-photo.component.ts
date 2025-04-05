@@ -109,7 +109,7 @@ export class LoginPhotoComponent implements OnInit, AfterViewInit {
 
             this.http.post<any>(compareUrl, compareForm).subscribe(
               response => {
-                if (response.confidence >= 80) {
+                if (response.confidence >= 50) {
                   foundUser = user;
 
                   const userToLog = {

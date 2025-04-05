@@ -31,7 +31,7 @@ export class AdminChatComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.http.get<any[]>('https://your-registration-api-url/users').subscribe(data => {
+    this.http.get<any[]>('https://67d5f9cd286fdac89bc0e100.mockapi.io/Registration').subscribe(data => {
       this.users = data;
     });
   }

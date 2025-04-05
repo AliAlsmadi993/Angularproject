@@ -19,3 +19,11 @@ body {
   margin-top: auto; /* لضمان أن الـ Footer يكون في أسفل الصفحة دائماً */
   background-color: #f0f0f0;
 }
+.single-footer-widget{
+    padding-top:60px!important;
+    margin-bottom:-50px!important;
+}
+img {
+  margin-top: -74px;
+  max-width: 100%;
+}

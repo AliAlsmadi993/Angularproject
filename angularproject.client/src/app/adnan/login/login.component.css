@@ -53,3 +53,6 @@ body, html {
   color: white; /* Optional: change text color */
   border: none; /* Optional: removes border */
 }
+.swal2-container {
+  z-index: 999999 !important;
+}

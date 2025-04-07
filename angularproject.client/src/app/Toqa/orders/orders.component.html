@@ -27,7 +27,7 @@
         <td>{{ order.deliveryDate | date: 'short' }}</td>
         <td>{{ order.totalPrice | number:'1.2-2' }} JD</td>
         <td>
-          <select class="form-select" [(ngModel)]="order.status" (change)="updateStatus(order)" [ngModelOptions]="{ standalone: true }">
+          <select class="form-select" [(ngModel)]="order.status" (change)="updateStatus(order)" >
             <option [ngValue]="'Placed'">Placed</option>
             <option [ngValue]="'On the Way'">On the Way</option>
             <option [ngValue]="'Delivered'">Delivered</option>

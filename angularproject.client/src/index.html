@@ -13,6 +13,10 @@
   <!-- Favicon -->
   <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
   <!-- CSS
   ============================================ -->
   <!-- Bootstrap CSS -->
@@ -64,6 +68,61 @@
         margin-right: 8px;
         font-size: 18px;
       }
+
+    /* تحسين شكل السيلكت */
+    #google_translate_element select {
+      background-color: #fff;
+      color: #444;
+      padding: 8px 16px;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-align: right;
+      width: auto; /* يراعي طول النص */
+    }
+
+      /* تحسين التأثير عند التمرير */
+      #google_translate_element select:hover {
+        border-color: #d32f2f;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      }
+
+    /* إزالة النصوص "ترجمة Google" */
+    .goog-logo-link,
+    .goog-te-gadget span {
+      display: none !important;
+      font-size: 0;
+      color: transparent;
+    }
+
+    /* إزالة البانر العلوي (لو كان موجود) */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+    }
+
+    body {
+      top: 0 !important;
+    }
+
+    /* ضبط مكان الزر في منتصف الصفحة */
+    #google_translate_element {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+      /* تحسين شكل السهم */
+      #google_translate_element select::-ms-expand {
+        display: none;
+      }
+
+      #google_translate_element select::-webkit-appearance: none;
   </style>
 </head>
 <body>

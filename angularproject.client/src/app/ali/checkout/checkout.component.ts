@@ -4,6 +4,7 @@ import { CartserviceService } from '../service/cartservice.service';
 import { OrderService } from '../service/order.service';
 import { VoucherService } from '../service/voucher.service';
 import Swal from 'sweetalert2';
+import { HttpClient } from '@angular/common/http';
 
 interface CartProduct {
   productId: string;
@@ -20,13 +21,6 @@ interface Cart {
   cartId: string;
 }
 
-interface Voucher {
-  userId: number;
-  Name: string;
-  Discount: number;
-  Userid: string[];
-  id: string;
-}
 
 @Component({
   selector: 'app-checkout',
@@ -44,17 +38,17 @@ export class CheckoutComponent implements OnInit {
   recipientName: string = '';  // ✅ إضافة اسم المستلم هنا
   paymentMethod: string = 'Orange Money';
   isLoading: boolean = true;
-  vouchers: Voucher[] = [];
-  selectedVoucherId: string = '';
   discountedPrice: number = 0;
   deliveryDate: string = '';
   deliveryTime: string = '';
+  orangeMoneyImageUrl: string = '';
+  orangeMoneyScreenshotFile!: File;
 
   constructor(
     private cartService: CartserviceService,
     private orderService: OrderService,
-    private voucherService: VoucherService,
-    private router: Router
+    private router: Router,
+    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +67,6 @@ export class CheckoutComponent implements OnInit {
         }
         if (this.userId) {
           this.loadCart();
-          this.loadUserVouchers();
         }
       },
       (error) => console.error('❌ Error fetching user ID from logged API:', error)
@@ -96,12 +89,8 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  loadUserVouchers(): void {
-    this.voucherService.getVouchersByUserId(this.userId.toString()).subscribe(
-      (vouchers: Voucher[]) => this.vouchers = vouchers,
-      (error) => console.error('Failed to load user vouchers:', error)
-    );
-  }
+  
+  
 
   calculateTotalPrice(): void {
     this.totalPrice = 0;
@@ -115,15 +104,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  applyVoucher(): void {
-    const selectedVoucher = this.vouchers.find(voucher => voucher.id === this.selectedVoucherId);
-    if (selectedVoucher) {
-      const discount = selectedVoucher.Discount;
-      this.discountedPrice = this.totalPrice - (this.totalPrice * (discount / 100));
-    } else {
-      this.discountedPrice = this.totalPrice;
-    }
-  }
+ 
 
   completeOrder(): void {
     if (!this.location || !this.phoneNumber || !this.recipientName || !this.deliveryDate || !this.deliveryTime) {
@@ -137,9 +118,9 @@ export class CheckoutComponent implements OnInit {
       location: this.location,
       phoneNumber: this.phoneNumber,
       recipientName: this.recipientName,
+      paymentMethod: this.paymentMethod === 'Orange Money' ? `Orange Money\n${this.orangeMoneyImageUrl}` : this.paymentMethod,
       deliveryDate: this.deliveryDate,
       deliveryTime: this.deliveryTime,
-      paymentMethod: this.paymentMethod,
       date: new Date().toISOString(),
       totalPrice: this.discountedPrice,
       status: 'Placed'
@@ -161,7 +142,6 @@ export class CheckoutComponent implements OnInit {
                 background: '#fff',
                 backdrop: `rgba(0,0,0,0.4)`
               });
-              this.removeUsedVoucher();
               this.clearCart();
             },
             (error) => console.error('Failed to update order:', error)
@@ -182,7 +162,6 @@ export class CheckoutComponent implements OnInit {
                 background: '#fff',
                 backdrop: `rgba(0,0,0,0.4)`
               });
-              this.removeUsedVoucher();
               this.clearCart();
             },
             (error) => console.error('Failed to create order:', error)
@@ -208,16 +187,22 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  removeUsedVoucher(): void {
-    if (this.selectedVoucherId) {
-      this.voucherService.deleteVoucher(this.selectedVoucherId, this.userId.toString()).subscribe(
-        () => {
-          console.log('Voucher deleted successfully');
-          this.loadCart();
-          this.router.navigate(['/history']);
+  onOrangeMoneyImageSelected(event: any): void {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    this.http.post<any>('https://api.imgbb.com/1/upload?key=8c8ce81a714d22cb8e6e71c2dd4dd49d', formData)
+      .subscribe({
+        next: (res) => {
+          this.orangeMoneyImageUrl = res.data.url;
+          Swal.fire('✅ Uploaded', 'Payment screenshot uploaded successfully.', 'success');
         },
-        (error) => console.error('Failed to delete voucher:', error)
-      );
-    }
+        error: () => {
+          Swal.fire('❌ Error', 'Failed to upload screenshot. Try again.', 'error');
+        }
+      });
   }
 }

@@ -56,3 +56,19 @@ body, html {
 .swal2-container {
   z-index: 999999 !important;
 }
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+  .auth-links a {
+    color: red;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+    .auth-links a:hover {
+      text-decoration: underline;
+    }

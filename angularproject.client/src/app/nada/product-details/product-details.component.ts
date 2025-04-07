@@ -11,6 +11,14 @@ interface CartProduct {
   price: number;
   img: string;
 }
+export interface IRating {
+  userName: string;
+  comment: string;
+  score: number;
+  date: string;
+  userImage?: string;  // ✅ هذا السطر هو الحل
+}
+
 
 @Component({
   selector: 'app-product-details',
@@ -26,6 +34,9 @@ export class ProductDetailsComponent {
   selectedRating: number = 0;
   userName: string = "";
   comment: string = "";
+  userImg: string = '';
+
+
 
   constructor(
     private _service: ProductsService,
@@ -49,6 +60,16 @@ export class ProductDetailsComponent {
   fetchProduct(id: string) {
     this._service.getProductById(id).subscribe(
       (data: IProduct) => {
+        // أضف صورة افتراضية إذا ما كانت موجودة
+        if (data.Rating && Array.isArray(data.Rating)) {
+          data.Rating = data.Rating.map((review: any) => {
+            return {
+              ...review,
+              userImage: review.userImage || '/assets/images/review/default.jpg'
+            };
+          });
+        }
+
         this.SingleProduct = data;
       },
       (error) => {
@@ -56,6 +77,7 @@ export class ProductDetailsComponent {
       }
     );
   }
+
   fetchAllProducts() {
     this._service.getAllProducts().subscribe(
       (data: IProduct[]) => {
@@ -115,6 +137,7 @@ export class ProductDetailsComponent {
 
     const newReview = {
       userName: this.userName,
+      userImage: this.userImg,
       score: this.selectedRating,
       comment: this.comment,
       date: new Date().toISOString()

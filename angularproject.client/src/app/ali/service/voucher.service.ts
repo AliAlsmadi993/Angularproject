@@ -7,6 +7,8 @@ import { map } from 'rxjs/operators';
 interface Voucher {
   id?: string;
   Discount: number;
+  openedDates?: { [userId: string]: string }
+
   Userid: string[];
 }
 

@@ -190,3 +190,7 @@ a.active {
 .dropdown-menu[_ngcontent-ng-c2483974395] {
   min-width: 100%;
 }
+
+.container-default {
+  margin: 0px 100px;
+}

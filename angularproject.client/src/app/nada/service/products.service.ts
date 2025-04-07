@@ -14,6 +14,7 @@ export interface IRating {
   score: 1 | 2 | 3 | 4 | 5;
   comment: string;
   date: string;
+  userImage?: string;
 }
 
 export interface IProduct {

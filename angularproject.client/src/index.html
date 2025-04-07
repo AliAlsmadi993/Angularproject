@@ -69,37 +69,54 @@
         font-size: 18px;
       }
 
-    /* تحسين شكل السيلكت */
-    #google_translate_element select {
-      background-color: #fff;
-      color: #444;
-      padding: 8px 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 15px;
-      font-family: 'Poppins', sans-serif;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      text-align: right;
-      width: auto; /* يراعي طول النص */
+    /* العنصر الخارجي */
+    #google_translate_element {
+      position: relative;
+      display: inline-block;
+      width: 45px;
+      height: 45px;
     }
 
-      /* تحسين التأثير عند التمرير */
-      #google_translate_element select:hover {
-        border-color: #d32f2f;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      /* أيقونة كوكب الأصلية (globe) بحجم أكبر */
+      #google_translate_element::before {
+        content: "\f0ac"; /* globe icon الأصلي */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 32px;
+        color: #e72463;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        transition: color 0.3s ease, transform 0.3s ease;
       }
 
-    /* إزالة النصوص "ترجمة Google" */
+      /* تأثير عند التحويم */
+      #google_translate_element:hover::before {
+        color: #c51c55;
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      /* السيلكت الشفاف فوق الأيقونة */
+      #google_translate_element select {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        z-index: 2;
+      }
+
+    /* إخفاء شعار Google والنص */
     .goog-logo-link,
     .goog-te-gadget span {
       display: none !important;
-      font-size: 0;
-      color: transparent;
     }
 
-    /* إزالة البانر العلوي (لو كان موجود) */
+    /* إزالة البانر العلوي */
     .goog-te-banner-frame.skiptranslate {
       display: none !important;
     }
@@ -108,21 +125,36 @@
       top: 0 !important;
     }
 
-    /* ضبط مكان الزر في منتصف الصفحة */
-    #google_translate_element {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-      margin-bottom: 20px;
+    /* توسيع عرض القائمة المنبثقة */
+    .goog-te-menu-frame {
+      width: 350px !important;
+      height: auto !important;
+      top: 60px !important;
+      right: 20px !important;
+      border: none !important;
+      z-index: 9999;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    /* إخفاء النصوص "ترجمة Google" أو "Powered by Google" */
+
+
+    /* إخفاء شريط الترجمة العلوي بالكامل */
+    .goog-te-banner-frame.skiptranslate {
+      display: none !important;
+      visibility: hidden !important;
     }
 
-      /* تحسين شكل السهم */
-      #google_translate_element select::-ms-expand {
-        display: none;
+    /* إرجاع الصفحة لمكانها الطبيعي بعد إخفاء الشريط */
+    body {
+      top: 0px !important;
+    }
+
+      /* إخفاء الشريط الرمادي أيضًا (لو بقي أثره) */
+      body > .skiptranslate {
+        display: none !important;
       }
 
-      #google_translate_element select::-webkit-appearance: none;
+
   </style>
 </head>
 <body>

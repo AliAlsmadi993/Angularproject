@@ -12,8 +12,8 @@ export class OrdersComponent {
   constructor(private _admin: AdminService) { }
 
   orders: any[] = [];
-  usersWithOrders: any[] = []; // keep the original full response
-  selectedOrder: any = null; // ✅ لتخزين الطلب المعروض في البوب أب
+  usersWithOrders: any[] = [];
+  selectedOrder: any = null;
 
   ngOnInit() {
     this.ShowAllOrders();
@@ -26,60 +26,58 @@ export class OrdersComponent {
       const allOrders: any[] = [];
 
       data.forEach(user => {
-        user.orderData.forEach((order: any) => {
-          allOrders.push({
-            ...order,
-            userId: user.id // attach the user ID to each order
+        // تأكد إنه في orderData
+        if (user.orderData && Array.isArray(user.orderData)) {
+          user.orderData.forEach((order: any) => {
+            allOrders.push({
+              ...order,
+              userId: Number(user.userId || user.id),
+              username: order.username            });
           });
-        });
+        }
       });
 
       this.orders = allOrders;
-      console.log(this.orders);
+      console.log("✅ All Orders Extracted:", this.orders);
     });
   }
 
   updateStatus(order: any) {
     console.log(`Order ${order.userId} status changed to:`, order.status);
 
-    // Get all orders for this user
     const updatedOrders = this.orders
       .filter(o => o.userId === order.userId)
       .map(o => {
-        // Update the order with matching date (assuming date is unique)
         if (o.date === order.date) {
           return { ...o, status: order.status };
         }
         return o;
       });
 
-    // Send the updated array to the backend
     this._admin.UpdateOrder(order.userId, { orderData: updatedOrders }).subscribe(() => {
       console.log(`Updated all orders for user ${order.userId}`);
     });
   }
 
-  // ✅ استخراج اسم الدفع فقط
+  // ✅ استخراج اسم الدفع فقط (للطباعة أو العرض البسيط)
   extractPaymentText(payment: string): string {
     if (payment.includes('http')) {
-      return payment.split('\n')[0]; // فقط "Orange Money"
+      return payment.split('\n')[0];
     }
     return payment;
   }
 
-  // ✅ هل يوجد صورة مرفقة؟
-  hasPaymentImage(payment: string): boolean {
-    return payment.includes('http');
+  // ✅ التأكد إن فيه صورة دفع مرفقة
+  hasPaymentImage(order: any): boolean {
+    return !!order.orangeMoneyImage;
   }
 
-  // ✅ عرض صورة الإيصال في SweetAlert
-  showPaymentDetails(payment: string): void {
-    const imageUrl = payment.split('\n')[1];
+  // ✅ عرض صورة الدفع فقط في SweetAlert
+  showPaymentDetails(order: any): void {
+    if (!order.orangeMoneyImage) return;
     Swal.fire({
       title: 'Payment Receipt',
-      html: `
-      <img src="${imageUrl}" alt="Payment Screenshot" style="max-width:100%; border-radius:10px;" />
-    `,
+      html: `<img src="${order.orangeMoneyImage}" alt="Payment Screenshot" style="max-width:100%; border-radius:10px;" />`,
       showCloseButton: true,
       showConfirmButton: false,
       background: '#fff',
@@ -87,49 +85,47 @@ export class OrdersComponent {
     });
   }
 
-
-
-
-  // ✅ فتح تفاصيل الطلب في SweetAlert
+  // ✅ فتح تفاصيل الطلب بالكامل
+  // ✅ لا داعي الآن لفصل صورة الدفع من طريقة الدفع، لأن الصورة موجودة في receiptImageUrl
   showOrderDetails(order: any): void {
     this.selectedOrder = order;
     const productsHtml = order.products.map((p: any) => `
-      <div style="margin-bottom:10px; border-bottom:1px solid #ccc; padding-bottom:10px">
-        <img src="${p.img}" alt="${p.name}" style="width:70px; height:70px; object-fit:cover; border-radius:5px;" />
-        <div><strong>${p.name}</strong> - Qty: ${p.quantity} - ${p.price} JD</div>
-        <div><em>Message:</em> ${p.message || 'No message'}</div>
-      </div>
-    `).join('');
+    <div style="margin-bottom:10px; border-bottom:1px solid #ccc; padding-bottom:10px">
+      <img src="${p.img}" alt="${p.name}" style="width:70px; height:70px; object-fit:cover; border-radius:5px;" />
+      <div><strong>${p.name}</strong> - Qty: ${p.quantity} - ${p.price} JD</div>
+      <div><em>Message:</em> ${p.message || 'No message'}</div>
+    </div>
+  `).join('');
 
-    const paymentImage = order.paymentMethod.includes('http')
-      ? `<img src="${order.paymentMethod.split('\n')[1]}" style="max-width:100%; border-radius:10px;" />`
+    const paymentImage = order.receiptImageUrl
+      ? `<img src="${order.receiptImageUrl}" style="max-width:100%; border-radius:10px;" />`
       : '';
 
     Swal.fire({
       title: `Order Details - ${order.username}`,
       html: `
-        <div style="text-align:left">
-          <p><strong>Phone:</strong> ${order.phoneNumber}</p>
-          <p><strong>Recipient:</strong> ${order.recipientName}</p>
-          <p><strong>Location:</strong> ${order.location}</p>
-          <p><strong>Payment Method:</strong> ${this.extractPaymentText(order.paymentMethod)}</p>
-          ${paymentImage}
-          <p><strong>Delivery Date:</strong> ${order.deliveryDate}</p>
-          <p><strong>Delivery Time:</strong> ${order.deliveryTime}</p>
-          <p><strong>Total Price:</strong> ${order.totalPrice} JD</p>
-          <hr />
-          <h5>Products:</h5>
-          ${productsHtml}
-        </div>
-      `,
+      <div style="text-align:left">
+        <p><strong>Phone:</strong> ${order.phoneNumber}</p>
+        <p><strong>Recipient:</strong> ${order.recipientName}</p>
+        <p><strong>Location:</strong> ${order.location}</p>
+        <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+        ${paymentImage}
+        <p><strong>Delivery Date:</strong> ${order.deliveryDate}</p>
+        <p><strong>Delivery Time:</strong> ${order.deliveryTime}</p>
+        <p><strong>Total Price:</strong> ${order.totalPrice} JD</p>
+        <hr />
+        <h5>Products:</h5>
+        ${productsHtml}
+      </div>
+    `,
       showCloseButton: true,
       showConfirmButton: false,
       width: 600,
       background: '#fff',
     });
   }
+
   getCleanPaymentMethod(method: string): string {
     return method.split('http')[0].trim();
   }
-
 }

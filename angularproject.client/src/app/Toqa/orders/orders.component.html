@@ -9,7 +9,8 @@
         <th>Phone</th>
         <th>Recipient</th>
         <th>Payment</th>
-        <th>Date</th>
+        <!--<th>Date</th>-->
+        <th>Delivery Date</th>
         <th>Total Price</th>
         <th>Status</th>
         <th>Products</th>
@@ -22,11 +23,11 @@
         <td>{{ order.phoneNumber }}</td>
         <td>{{ order.recipientName }}</td>
         <td>{{ order.paymentMethod }}</td>
-        <td>{{ order.date | date: 'short' }}</td>
-        <td>{{ order.totalPrice }} JD</td>
-
+        <!--<td>{{ order.date | date: 'short' }}</td>-->
+        <td>{{ order.deliveryDate | date: 'short' }}</td>
+        <td>{{ order.totalPrice | number:'1.2-2' }} JD</td>
         <td>
-          <select class="form-select" [(ngModel)]="order.status" (change)="updateStatus(order)"   [ngModelOptions]="{ standalone: true }">
+          <select class="form-select" [(ngModel)]="order.status" (change)="updateStatus(order)" [ngModelOptions]="{ standalone: true }">
             <option [ngValue]="'Placed'">Placed</option>
             <option [ngValue]="'On the Way'">On the Way</option>
             <option [ngValue]="'Delivered'">Delivered</option>

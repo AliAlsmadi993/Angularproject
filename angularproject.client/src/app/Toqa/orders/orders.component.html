@@ -59,8 +59,8 @@
         </div>
 
         <!-- ✅ طريقة الدفع وصورة الريسيت -->
-        <div class="receipt-section mt-3">
-          <p><strong>Payment Method:</strong> {{ selectedOrder.paymentMethod }}</p>
+        <div class="receipt-section mt-3" style="margin-bottom:5px">
+          <p style="margin-top: -16px;"><strong>Payment Method:</strong> {{ selectedOrder.paymentMethod }}</p>
 
           <div *ngIf="selectedOrder.receiptImageUrl">
             <p><strong>Receipt:</strong></p>

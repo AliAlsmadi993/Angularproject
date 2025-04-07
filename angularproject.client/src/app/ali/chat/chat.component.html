@@ -1,3 +1,11 @@
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
 <div class="user-chat-container">
   <div class="user-header">
     <img [src]="userAvatar" alt="User Avatar" class="user-avatar">
@@ -12,7 +20,7 @@
            class="avatar-image"
            alt="Sender Image" />
 
-      <div class="message-content" [ngClass]="{'user-style': message.sender === 'user', 'admin-style': message.sender === 'admin'}">
+      <div class="message-content" [ngClass]="{'user-style': message.sender === 'user', 'admin-style': message.sender === 'admin'}" >
         <p>{{ message.message }}</p>
         <img *ngIf="message.image" [src]="message.image" alt="Message Image" class="message-image">
       </div>

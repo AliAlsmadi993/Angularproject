@@ -46,8 +46,8 @@
             </i>
           </div>
           <div class="price-box mb-2">
-            <span class="regular-price">${{ (SingleProduct.Price - (SingleProduct.Price * SingleProduct.Discount / 100)) | number: '1.2-2' }}</span>
-            <span class="old-price"><del>${{ SingleProduct.Price | number: '1.2-2' }}</del></span>
+            <span class="regular-price">{{ (SingleProduct.Price - (SingleProduct.Price * SingleProduct.Discount / 100)) | number: '1.2-2' }} JD</span>
+            <span class="old-price"><del>{{ SingleProduct.Price | number: '1.2-2' }} JD</del></span>
           </div>
 
           <!--<div class="sku mb-3">
@@ -88,7 +88,7 @@
           <!-- Start Single Review -->
           <div class="pro_review mb-5">
             <div class="review_thumb">
-              <img alt="review images" src="/assets/images/review/1.jpg">
+              <img [src]="review.userImage || '/assets/images/review/default.jpg'" alt="User Image" class="rounded-circle" width="50" height="50">
             </div>
             <div class="review_details">
               <div class="review_info mb-2">
@@ -137,44 +137,6 @@
             </div>
           </div>
         </div>-->
-
-        <div class="rating_wrap">
-          <h4 class="rating-title-1 font-weight-bold mb-2">Add a review</h4>
-          <h5 class="rating-title-2 mb-2">Your Rating</h5>
-          <div class="rating_list mb-4">
-            <div class="review_info">
-              <div class="product-rating">
-                <i class="fa"
-                   *ngFor="let star of [1, 2, 3, 4, 5]; let i = index"
-                   [ngClass]="{'fa-star': i < selectedRating, 'fa-star-o': i >= selectedRating}"
-                   (click)="setRating(i + 1)">
-                </i>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Comment Form -->
-        <div class="comments-area comments-reply-area">
-          <div class="row">
-            <div class="col-lg-12 col-custom">
-              <form (ngSubmit)="submitReview()" class="comment-form-area">
-                <div class="comment-form-comment mb-3">
-                  <label><h4 class="rating-title-2 mb-2">Your Name</h4></label>
-                  <input type="text" class="form-control" [(ngModel)]="userName" name="userName" required />
-                </div>
-                <div class="comment-form-comment mb-3">
-                  <label><h4 class="rating-title-2 mb-2">Your Comment</h4></label>
-                  <textarea class="comment-notes" [(ngModel)]="comment" name="comment" required></textarea>
-                </div>
-
-                <div class="comment-form-submit">
-                  <button type="submit" class="btn flosun-button secondary-btn rounded-0">Submit</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
 
         <!--<div class="rating_wrap">
           <h3 class="rating-title-1 font-weight-bold mb-2">Add a review</h3>
@@ -245,8 +207,8 @@
                       </div>
 
                       <div class="price-box">
-                        <span class="regular-price ">${{ (product.Price - (product.Price * product.Discount / 100)) | number: '1.2-2' }}</span>
-                        <span class="old-price">${{ product.Price | number: '1.2-2' }}</span>
+                        <span class="regular-price ">{{ (product.Price - (product.Price * product.Discount / 100)) | number: '1.2-2' }} JD</span>
+                        <span class="old-price">{{ product.Price | number: '1.2-2' }} JD</span>
                       </div>
                       <a href="cart.html" class="btn product-cart">Add to Cart</a>
                     </div>

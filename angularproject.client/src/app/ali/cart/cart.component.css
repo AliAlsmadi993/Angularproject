@@ -154,3 +154,70 @@ table img {
     margin-top: 10px;
   }
 }
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  margin-top: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.voucher-box {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 280px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+}
+
+  .voucher-box h4 {
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #e72463;
+  }
+
+.voucher-select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.discount-info {
+  font-weight: bold;
+  color: #333;
+}
+
+  .discount-info span {
+    color: green;
+    margin-left: 5px;
+  }
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.save-btn, .checkout-btn {
+  background-color: #e72463;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+  .save-btn:hover, .checkout-btn:hover {
+    background-color: #c71e53;
+  }

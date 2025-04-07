@@ -49,7 +49,7 @@ export class DashboardcontentComponent implements OnInit {
 
   loadStats(): void {
     const apis = [
-      { label: 'Users', url: 'https://67e2c65297fc65f53537891e.mockapi.io/User' },
+      { label: 'Users', url: 'https://67d5f9cd286fdac89bc0e100.mockapi.io/Registration' },
       { label: 'Orders', url: 'https://67d293bd90e0670699be2936.mockapi.io/Order' },
       { label: 'Vouchers', url: 'https://67e2bc4a97fc65f535375ff8.mockapi.io/Voucher' },
       { label: 'Feedbacks', url: 'https://67e2c65297fc65f53537891e.mockapi.io/Feedback' },

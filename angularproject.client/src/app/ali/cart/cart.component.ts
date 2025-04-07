@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartserviceService } from '../service/cartservice.service';
+import { VoucherService } from '../service/voucher.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 interface CartProduct {
@@ -29,11 +30,15 @@ export class CartComponent implements OnInit {
   totalPrice: number = 0;
   isLoading: boolean = true;
   isLoggedIn: boolean = false;
+  vouchers: any[] = [];
+  selectedVoucherId: string = '';
+  discountedPrice: number = 0;
 
   constructor(
     private cartService: CartserviceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private voucherService: VoucherService
   ) { }
 
   ngOnInit(): void {
@@ -43,13 +48,15 @@ export class CartComponent implements OnInit {
   checkUserStatus(): void {
     this.cartService.checkLoggedStatus().subscribe(
       (response) => {
-        console.log('🔍 Response from Logged API:', response);  // لمراقبة ما يتم جلبه من Logged API
+        console.log('🔍 Response from Logged API:', response);
 
         if (response && response.length > 0 && response[0].userId) {
           this.userId = Number(response[0].userId);
           console.log('✅ User ID Retrieved from Logged API:', this.userId);
           this.isLoggedIn = true;
           this.loadCart();
+          this.loadUserVouchers();
+
         } else {
           console.log('🚫 No User ID Found. Loading Guest Cart...');
           this.loadGuestCart();
@@ -117,6 +124,49 @@ export class CartComponent implements OnInit {
     }
   }
 
+  loadUserVouchers(): void {
+    this.voucherService.getVouchersByUserId(this.userId.toString()).subscribe(
+      (vouchers: any[]) => this.vouchers = vouchers,
+      (error) => console.error('Failed to load vouchers:', error)
+    );
+  }
+
+  applyVoucher(): void {
+    const selectedVoucher = this.vouchers.find(v => v.id === this.selectedVoucherId);
+    if (selectedVoucher) {
+      const discount = selectedVoucher.Discount;
+
+      // ✅ تحديث السعر لكل منتج في الكارت
+      this.cart.products.forEach(product => {
+        if (product.price) {
+          const discountedPrice = product.price - (product.price * (discount / 100));
+          product.price = parseFloat(discountedPrice.toFixed(2));
+        }
+      });
+
+      // ✅ إعادة حساب التوتال برايس بعد الخصم
+      this.calculateTotalPrice();
+      this.discountedPrice = this.totalPrice;
+
+      // ✅ تحديث الكارت بالأسعار الجديدة
+      this.cartService.updateCart(this.cart.cartId, this.cart.products).subscribe(
+        () => console.log('✅ Cart updated with discounted product prices.'),
+        (error) => console.error('❌ Failed to update cart after discount:', error)
+      );
+
+      // ✅ حذف الفاوتشر من عند اليوزر
+      this.voucherService.deleteVoucher(this.selectedVoucherId, this.userId.toString()).subscribe(
+        () => {
+          console.log('✅ Voucher deleted successfully.');
+          this.vouchers = this.vouchers.filter(v => v.id !== this.selectedVoucherId);
+          this.selectedVoucherId = '';
+        },
+        (error) => console.error('❌ Failed to delete voucher:', error)
+      );
+    }
+  }
+
+
   removeProduct(productId: string): void {
     const updatedProducts = this.cart.products.filter(p => p.productId !== productId);
 
@@ -149,4 +199,5 @@ export class CartComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
+
 }

@@ -41,9 +41,10 @@ import { ProductDetailsComponent } from './nada/product-details/product-details.
 import { ProductsComponent } from './nada/products/products.component';
 import { CartComponent } from './ali/cart/cart.component';
 import { CheckoutComponent } from './ali/checkout/checkout.component';
-import { VoucherComponent } from './ali/voucher/voucher.component';
 import { ChatComponent } from './ali/chat/chat.component';
 import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
+import { VoucherComponent } from './ali/voucher/voucher.component';
+import { LoginPhotoComponent } from './ali/login-photo/login-photo.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { AdminChatComponent } from './ali/admin-chat/admin-chat.component';
     ProductDetailsComponent,
     ProductsComponent,
     ChatComponent,
-    AdminChatComponent
+    AdminChatComponent,
+    LoginPhotoComponent
   ],
   imports: [
     BrowserModule,

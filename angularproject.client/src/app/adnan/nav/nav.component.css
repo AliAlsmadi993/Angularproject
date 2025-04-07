@@ -24,3 +24,30 @@
   color: white; /* Optional: change text color */
   border: none; /* Optional: removes border */
 }
+.fa-bars:before {
+  content: "";
+}
+
+@media(max-width:1000px) {
+  .fa-bars:before {
+    content: "\f0c9";
+    position: absolute;
+    right: 20px;
+    top: 50px;
+  }
+}
+
+.off-canvas-wrapper.open .off-canvas-inner-content {
+  text-align: left;
+}
+
+.main-nav > ul > li {
+  display: inline-block;
+  position: relative;
+  padding: 45px 0px 0px 0px;
+}
+
+.no-border-box,
+.no-border-box * {
+  box-sizing: content-box;
+}

@@ -4,6 +4,7 @@ declare global {
     webkitSpeechRecognition: any;
   }
 }
+import { ActivatedRoute } from '@angular/router';
 
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { ICart, ICategory, IProduct, ProductsService } from '../service/products.service';
@@ -33,16 +34,31 @@ export class ProductsComponent {
   @ViewChild('sliderMinHandle', { static: false }) sliderMinHandle!: ElementRef;
   @ViewChild('sliderMaxHandle', { static: false }) sliderMaxHandle!: ElementRef;
 
-  constructor(private _service: ProductsService, private renderer: Renderer2, private router: Router) { }
+  constructor(private _service: ProductsService, private renderer: Renderer2, private router: Router, private route: ActivatedRoute) { }
+  categoryIdFromUrl: string | null = null;
 
   ngOnInit() {
-    this.fetchAllProducts();
     this.fetchAllCategories();
     this.setupVoiceSearch();
     this.sortProducts("Sort by newness");
     this.getUniqueTags();
-  }
 
+    this.route.queryParamMap.subscribe(params => {
+      const categoryId = params.get('category');
+
+      if (categoryId) {
+        this.selectedCategory = categoryId;
+        this._service.getAllProducts().subscribe((data: IProduct[]) => {
+          this.Products = data;
+          this.AllProducts = data;
+          this.filterProducts(); // 🔥 فلترة حسب الكاتيجوري
+          this.sortProducts("Sort by newness");
+        });
+      } else {
+        this.fetchAllProducts(); // ✅ يرجع كل المنتجات
+      }
+    });
+  }
   toggleView(mode: string) {
     this.viewMode = mode;
   }

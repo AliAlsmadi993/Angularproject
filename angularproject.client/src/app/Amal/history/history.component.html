@@ -1,3 +1,8 @@
+<br />
+<br />
+<br />
+<br />
+
 <div class="container mt-5">
   <h2 class="text-center mb-5" style="font-family: 'Playfair Display', serif; color: #E72463; font-size: 3rem;">
     Your Blooming Order History 🌹
@@ -5,63 +10,58 @@
 
   <div *ngIf="stuff && stuff.length > 0; else noHistory" class="row">
     <div class="col-md-12" *ngFor="let order of stuff">
-      <div class="card mb-4 shadow-lg rounded border-0"
-           style="background: rgba(255, 245, 245, 0.95); border-left: 5px solid #E72463;">
+      <div class="card bloom-card mb-4">
         <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center">
-            <h4 class="card-title text-dark font-weight-bold mb-3">Order Details</h4>
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4 class="card-title">Order #{{ order.id }}</h4>
             <span class="badge" [ngClass]="{
               'bg-success': order.status === 'Delivered',
               'bg-warning': order.status === 'On the Way',
               'bg-info': order.status === 'Placed'
-            }" style="font-size: 1rem;">Status: {{ order.status }}</span>
+            }">Status: {{ order.status }}</span>
           </div>
 
-          <div class="d-flex justify-content-between mb-3">
-            <p><strong>Recipient:</strong> {{ order.recipientName }}</p>
-            <p><strong>Phone:</strong> {{ order.phoneNumber }}</p>
+          <div class="row text-muted mb-3">
+            <div class="col-md-6">
+              <p><i class="bi bi-person-circle me-2"></i><strong>Recipient:</strong> {{ order.recipientName }}</p>
+              <p><i class="bi bi-telephone me-2"></i><strong>Phone:</strong> {{ order.phoneNumber }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><i class="bi bi-geo-alt me-2"></i><strong>Location:</strong> {{ order.location }}</p>
+              <p><i class="bi bi-credit-card me-2"></i><strong>Payment:</strong> {{ order.paymentMethod.includes('http') ? 'Orange Money' : order.paymentMethod }}</p>
+            </div>
           </div>
 
-          <div class="d-flex justify-content-between mb-3">
-            <p><strong>Location:</strong> {{ order.location }}</p>
-            <p><strong>Payment:</strong> {{ order.paymentMethod.includes('http') ? 'Orange Money' : order.paymentMethod }}</p>
+          <div class="row text-muted mb-3">
+            <div class="col-md-4"><strong>Order Date:</strong> {{ order.date | date: 'medium' }}</div>
+            <div class="col-md-4"><strong>Delivery Date:</strong> {{ order.deliveryDate }}</div>
+            <div class="col-md-4"><strong>Delivery Time:</strong> {{ order.deliveryTime }}</div>
           </div>
 
-          <p><strong>Order Date:</strong> {{ order.date | date: 'medium' }}</p>
-          <p><strong>Delivery Date:</strong> {{ order.deliveryDate }}</p>
-          <p><strong>Delivery Time:</strong> {{ order.deliveryTime }}</p>
-
-          <div class="mt-4">
-            <h5 class="text-dark mb-3">Products:</h5>
-            <div *ngFor="let product of order.products" class="card mb-3"
-                 style="background: rgba(255, 245, 245, 0.85); border-left: 3px solid #E72463;">
-              <div class="row g-0">
-                <div class="col-md-4">
-                  <img [src]="product.img" class="img-fluid rounded-start" alt="Product Image"
-                       style="height: 150px; object-fit: cover; border-radius: 12px;">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p>Message: {{ product.message }}</p>
-                    <p><strong>Quantity:</strong> {{ product.quantity }}</p>
-                    <p class="text-success"><strong>Price:</strong> {{ product.price | currency }}</p>
-
-                    <!-- زر التقييم -->
-                    <div *ngIf="order.status === 'Delivered'" class="d-flex justify-content-end mt-3">
-                      <button class="btn btn-outline-danger" (click)="openRatingPopup(order, product)">
-                        Rate Product
-                      </button>
-                    </div>
-                  </div>
+          <h5 class="mt-4 mb-3">Products:</h5>
+          <div class="row g-3" *ngFor="let product of order.products">
+            <div class="col-md-4">
+              <img [src]="product.img" class="img-fluid rounded shadow-sm" alt="Product Image"
+                   style="height: 150px; object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+              <div class="product-info-box p-3 rounded">
+                <h5 class="fw-bold mb-1">{{ product.name }}</h5>
+                <p><strong>Message:</strong> {{ product.message }}</p>
+                <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+                <p class="text-success"><strong>Price:</strong> {{ product.price | number:'1.2-2' }} JD</p>
+                <div *ngIf="order.status === 'Delivered'" class="text-end">
+                  <button class="btn btn-outline-danger btn-sm" (click)="openRatingPopup(order, product)">
+                    <i class="bi bi-star-half me-1"></i> Rate Product
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <div class="d-flex justify-content-between mt-3">
-            <h5>Total Price:</h5>
-            <h5 class="text-success">{{ order.totalPrice | currency }}</h5>
+          <div class="d-flex justify-content-between align-items-center mt-4 border-top pt-3">
+            <h5 class="mb-0">Total Price:</h5>
+            <h5 class="text-success mb-0">{{ order.totalPrice | number:'1.2-2' }} JD</h5>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
   </ng-template>
 </div>
 
-<!-- ✅ تقييم المنتج (بدون صورة أو اسم) -->
+<!-- ✅ Rating Popup -->
 <div *ngIf="showRatingPopup" class="rating-overlay">
   <div class="rating-popup p-4 rounded shadow" style="background: white; max-width: 500px; margin: 50px auto;">
     <h4 class="text-center mb-3">Rate This Product</h4>

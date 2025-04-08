@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdnanService } from '../service/adnan.service';
 import Swal from 'sweetalert2';
@@ -10,24 +10,28 @@ import Swal from 'sweetalert2';
 })
 export class NavComponent implements OnInit {
   container: any;
+  isScrolled = false;
 
   constructor(private _url: AdnanService, private router: Router) { }
 
   ngOnInit() {
     this._url.userObservable.subscribe((data) => {
-      this.container = data;  // تخزين البيانات في المتغير
+      this.container = data;
     });
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.pageYOffset > 50; // Change 50 if needed
+  }
+
   logout() {
-    // جلب جميع المستخدمين من الـ LOGGED API
     this._url.getAllLoggedUsers().subscribe({
       next: (users: any[]) => {
         if (users.length > 0) {
-          // عمل طلب DELETE لكل مستخدم موجود في الـ LOGGED API
-          const deleteRequests = users.map(user => this._url.removeUserFromLogged(user.id).toPromise());
-
-          // الانتظار حتى يتم حذف جميع المستخدمين بنجاح
+          const deleteRequests = users.map(user =>
+            this._url.removeUserFromLogged(user.id).toPromise()
+          );
           Promise.all(deleteRequests).then(() => {
             console.log("✅ All users successfully removed from LOGGED API.");
             this.completeLogout('Logout Successful!', 'All logged users have been removed successfully.');

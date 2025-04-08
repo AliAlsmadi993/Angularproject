@@ -1,5 +1,10 @@
 <div class="cart">
-  <header class="main-header-area" *ngIf="container !='Admin@gmail.com'" style="margin-top:-22px;">
+  <!--<header class="main-header-area" *ngIf="container !='Admin@gmail.com'" style="margin-top:-22px;">-->
+  <header class="main-header-area"
+          [class.scrolled]="isScrolled"
+          *ngIf="container !='Admin@gmail.com'"
+          style="margin-top:-22px;">
+
 
     <div class="main-header header-transparent header-sticky no-border-box" style="background-color:white;">
       <div class="container-fluid">
@@ -37,7 +42,7 @@
                   <li>
                     <a routerLink="/login"><span class="menu-text">Sign In</span></a>
                   </li>
-                 
+
                 </ng-container>
 
                 <!-- إذا كان المستخدم مسجل دخول -->

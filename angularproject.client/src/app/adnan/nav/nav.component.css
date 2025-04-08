@@ -51,3 +51,14 @@
 .no-border-box * {
   box-sizing: content-box;
 }
+
+/* Scroll behavior adjustment */
+.main-header-area {
+  transition: all 0.3s ease-in-out;
+  padding: 10px 0 !important;
+}
+
+  .main-header-area.scrolled {
+    padding: 5px 0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* optional: slight shadow on scroll */
+  }

@@ -21,7 +21,6 @@ interface Cart {
   cartId: string;
 }
 
-
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
@@ -35,7 +34,7 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number = 0;
   location: string = '';
   phoneNumber: string = '';
-  recipientName: string = '';  // ✅ إضافة اسم المستلم هنا
+  recipientName: string = '';
   paymentMethod: string = 'Orange Money';
   isLoading: boolean = true;
   discountedPrice: number = 0;
@@ -54,15 +53,15 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.getUserIdFromLoggedApi();
   }
+
   getUserIdFromLoggedApi(): void {
     this.cartService.checkLoggedStatus().subscribe(
       (response) => {
         if (Array.isArray(response) && response.length > 0 && response[0].userId) {
           this.userId = Number(response[0].userId);
-          this.username = response[0].Name || 'Unknown User';// استخراج الـ userId من داخل المصفوفة
+          this.username = response[0].Name || 'Unknown User';
           console.log('✅ User ID Retrieved from Logged API (Array):', this.userId);
-        }
-        else {
+        } else {
           console.error('❌ Failed to retrieve user ID from logged API. Response:', response);
         }
         if (this.userId) {
@@ -89,9 +88,6 @@ export class CheckoutComponent implements OnInit {
     );
   }
 
-  
-  
-
   calculateTotalPrice(): void {
     this.totalPrice = 0;
     if (this.cart && this.cart.products) {
@@ -104,13 +100,18 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
- 
-
   completeOrder(): void {
     if (!this.location || !this.phoneNumber || !this.recipientName || !this.deliveryDate || !this.deliveryTime) {
       alert('Please fill in all the required fields including delivery date and time.');
       return;
     }
+
+    // ✅ تنبيه إن الصورة مطلوبة فقط في Orange Money
+    if (this.paymentMethod === 'Orange Money' && !this.orangeMoneyImageUrl) {
+      Swal.fire('⚠️ Required', 'Please upload a screenshot of your Orange Money payment.', 'warning');
+      return;
+    }
+
     const orderData = {
       userId: this.userId,
       username: this.username,
@@ -118,7 +119,8 @@ export class CheckoutComponent implements OnInit {
       location: this.location,
       phoneNumber: this.phoneNumber,
       recipientName: this.recipientName,
-      paymentMethod: this.paymentMethod === 'Orange Money' ? `Orange Money\n${this.orangeMoneyImageUrl}` : this.paymentMethod,
+      paymentMethod: this.paymentMethod,
+      receiptImageUrl: this.paymentMethod === 'Orange Money' ? this.orangeMoneyImageUrl : '',
       deliveryDate: this.deliveryDate,
       deliveryTime: this.deliveryTime,
       date: new Date().toISOString(),

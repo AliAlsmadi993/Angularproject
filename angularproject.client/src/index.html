@@ -69,7 +69,6 @@
         font-size: 18px;
       }
 
-    /* العنصر الخارجي */
     #google_translate_element {
       position: relative;
       display: inline-block;
@@ -77,9 +76,8 @@
       height: 45px;
     }
 
-      /* أيقونة كوكب الأصلية (globe) بحجم أكبر */
       #google_translate_element::before {
-        content: "\f0ac"; /* globe icon الأصلي */
+        content: "\f0ac";
         font-family: "Font Awesome 5 Free";
         font-weight: 900;
         font-size: 32px;
@@ -92,13 +90,11 @@
         transition: color 0.3s ease, transform 0.3s ease;
       }
 
-      /* تأثير عند التحويم */
       #google_translate_element:hover::before {
         color: #c51c55;
         transform: translate(-50%, -50%) scale(1.1);
       }
 
-      /* السيلكت الشفاف فوق الأيقونة */
       #google_translate_element select {
         opacity: 0;
         position: absolute;
@@ -110,13 +106,11 @@
         z-index: 2;
       }
 
-    /* إخفاء شعار Google والنص */
     .goog-logo-link,
     .goog-te-gadget span {
       display: none !important;
     }
 
-    /* إزالة البانر العلوي */
     .goog-te-banner-frame.skiptranslate {
       display: none !important;
     }
@@ -135,21 +129,17 @@
       z-index: 9999;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
-    /* إخفاء النصوص "ترجمة Google" أو "Powered by Google" */
 
 
-    /* إخفاء شريط الترجمة العلوي بالكامل */
     .goog-te-banner-frame.skiptranslate {
       display: none !important;
       visibility: hidden !important;
     }
 
-    /* إرجاع الصفحة لمكانها الطبيعي بعد إخفاء الشريط */
     body {
       top: 0px !important;
     }
 
-      /* إخفاء الشريط الرمادي أيضًا (لو بقي أثره) */
       body > .skiptranslate {
         display: none !important;
       }

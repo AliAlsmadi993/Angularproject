@@ -20,6 +20,9 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoggedUserId();
+    setInterval(() => {
+      this.loadUserMessages();
+    }, 3000); // 3000 = 3 ثواني
   }
 
   getLoggedUserId(): void {
@@ -38,7 +41,7 @@ export class ChatComponent implements OnInit {
   }
 
   getUserAvatar(userId: number): void {
-    this.http.get<any[]>('https://your-registration-api-url').subscribe(
+    this.http.get<any[]>('https://67d5f9cd286fdac89bc0e100.mockapi.io/Registration').subscribe(
       users => {
         const user = users.find(u => Number(u.userId) === userId);
         if (user && user.imageUrl) {
@@ -89,4 +92,6 @@ export class ChatComponent implements OnInit {
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
   }
+
+
 }

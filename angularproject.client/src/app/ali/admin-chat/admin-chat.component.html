@@ -4,6 +4,17 @@
 <br />
 <br />
 
+<!-- ✅ اختيار المستخدم قبل الرسائل -->
+<div class="user-selector" style="margin: 20px 0; text-align: center;">
+  <label style="margin-right: 10px;">Select user to send message:</label>
+  <select [(ngModel)]="selectedUserId">
+    <option *ngFor="let msg of messages" [value]="msg.userId">
+      {{ getUserName(msg.userId) }}
+    </option>
+  </select>
+</div>
+
+<!-- ✅ منطقة المحادثة -->
 <div class="chat-container">
   <div *ngFor="let msg of messages"
        class="chat-message position-relative"
@@ -11,12 +22,12 @@
        (mouseenter)="msg.hover = true"
        (mouseleave)="msg.hover = false">
 
-    <!-- صورة -->
+    <!-- ✅ الصورة -->
     <img class="avatar"
          [src]="msg.sender === 'admin' ? userAvatar : getUserImage(msg.userId)"
          alt="avatar" />
 
-    <!-- محتوى الرسالة -->
+    <!-- ✅ محتوى الرسالة -->
     <div class="content">
       <div class="username">
         {{ msg.sender === 'admin' ? 'Admin' : getUserName(msg.userId) }}
@@ -27,7 +38,7 @@
       <img *ngIf="msg.image" [src]="msg.image" class="chat-image" />
     </div>
 
-    <!-- زر الإضافة عند التمرير -->
+    <!-- ✅ زر الإضافة للسلة -->
     <button *ngIf="msg.hover && msg.sender !== 'admin'"
             class="add-to-cart-btn"
             (click)="openAddToCart(msg)">
@@ -35,17 +46,15 @@
     </button>
   </div>
 
-  <!-- إدخال رسالة -->
+  <!-- ✅ إرسال رسالة جديدة -->
   <div class="input-area">
     <textarea [(ngModel)]="newMessage" placeholder="Type your message..."></textarea>
     <input type="file" (change)="onFileSelected($event)" />
-    <button (click)="sendMessage()">Send</button>
+    <button (click)="sendMessage(selectedUserId)">Send</button>
   </div>
 </div>
 
-<!-- نافذة الطلب الخاص -->
-<!-- Modal Overlay -->
-<!-- ✅ Popup Modal لمنتج مخصص -->
+<!-- ✅ نافذة الطلب الخاص -->
 <div class="modal-overlay" *ngIf="showCustomForm">
   <div class="modal-content">
     <h4 style="margin-bottom: 10px;">Add Custom Product to Cart</h4>
@@ -62,16 +71,16 @@
     <input type="number" placeholder="Quantity" [(ngModel)]="customProductQuantity" class="input-popup">
 
     <div class="modal-actions">
-      <button class="btn-confirm" (click)="addCustomProductToCart()">Add to Cart</button>
+      <button class="btn-confirm" (click)="addCustomProductToCart(selectedUserId)">Add to Cart</button>
       <button class="btn-cancel" (click)="showCustomForm = false">Cancel</button>
     </div>
   </div>
 </div>
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

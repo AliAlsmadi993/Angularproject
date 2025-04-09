@@ -12,6 +12,8 @@ export class ChatService {
   private imgbbApiKey = '8c8ce81a714d22cb8e6e71c2dd4dd49d';
   private loggedApiUrl = 'https://67e3fe882ae442db76d27d2c.mockapi.io/logged';
   private cartApiUrl = 'https://67d6b64c286fdac89bc2c055.mockapi.io/carts';
+  private registrationApiUrl = 'https://67d5f9cd286fdac89bc0e100.mockapi.io/Registration';
+
 
   constructor(private http: HttpClient) { }
 
@@ -43,6 +45,12 @@ export class ChatService {
       })
     );
   }
+
+  // ✅ جلب بيانات مستخدم من API التسجيل بناءً على userId
+  getUserById(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.registrationApiUrl}/${userId}`);
+  }
+
 
   // ✅ جلب معرف المستخدم الحالي من Logged API
   getLoggedUserId(): Observable<number> {

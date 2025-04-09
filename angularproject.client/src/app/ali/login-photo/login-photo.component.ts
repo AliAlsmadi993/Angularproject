@@ -56,6 +56,8 @@ export class LoginPhotoComponent implements OnInit, AfterViewInit {
   }
 
   deleteImage(): void {
+    this.initializeCamera();
+
     this.capturedImage = '';
     this.showVideo = true;
   }
